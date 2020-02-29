@@ -1,5 +1,0 @@
-remote_esg_host = 'ec2-52-202-185-87.compute-1.amazonaws.com'
-remote_db_port = '5432'
-remote_esg_dbname = 'd8s1mjqgsqo9l5'
-remote_esg_dbuser = 'ncxmmqbkgttejr'
-remote_esg_dbpwd = '0f0495c511a776d8a843e1099f97c2b8e9365db2e93e3b477d502f7aa04a78e2'
