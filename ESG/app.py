@@ -51,10 +51,38 @@ Base.classes.keys() # Print all of the classes mapped to the Base
 session = Session(engine) # Create a session
 print(Base.classes.keys())
 
+# Develop flask routes for each page and then the routes for the database info to feed the plots in our js files
+
 @app.route("/")
 def index():
     """Return the homepage."""
     return render_template("index.html")
+
+@app.route("/company-search")
+def company_search():
+    """Return the company search page."""
+    return render_template("company_search.html")
+
+@app.route("/data-table")
+def data_table():
+    """Return the data table."""
+    return render_template("data_table.html")
+
+@app.route("/deep-dive")
+def deep_dive():
+    """Return the deep_dive info for industry/sector/funnel,etc."""
+    return render_template("deep_dive.html")
+
+@app.route("/esg-breakdown")
+def esg_breakdown():
+    """Return the history and breakdown page."""
+    return render_template("esg_breakdown.html")
+
+@app.route("/recommendations")
+def index():
+    """Return the recommendations page."""
+    return render_template("recommendations.html")
+
     
 # @app.route('/api/data/esg')
 # def get_esg_data():
