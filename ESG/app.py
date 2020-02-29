@@ -2,6 +2,7 @@
 
 # The OS import is used to connect to the heroku environment to get the environment variables for database connection
 import os
+import json
 
 # Pandas is required in order to read the sql queries into dataframes for conversion to JSON for plotting
 import pandas as pd
