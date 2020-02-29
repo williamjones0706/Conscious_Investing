@@ -55,15 +55,15 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
     
-@app.route('/api/data/esg')
-def get_esg_data():
-    conn = engine.connect()
+# @app.route('/api/data/esg')
+# def get_esg_data():
+#     conn = engine.connect()
 
-    esg_df = pd.read_sql("SELECT * FROM woke_investing", conn)
+#     esg_df = pd.read_sql("SELECT * FROM woke_investing", conn)
 
-    conn.close()
+#     conn.close()
 
-    return esg_df.to_json(orient='records')
+#     return esg_df.to_json(orient='records')
 
 if __name__ == "__main__":
     app.run()
