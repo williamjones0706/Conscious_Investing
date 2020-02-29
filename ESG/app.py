@@ -79,7 +79,7 @@ def esg_breakdown():
     return render_template("esg_breakdown.html")
 
 @app.route("/recommendations")
-def index():
+def recommendations():
     """Return the recommendations page."""
     return render_template("recommendations.html")
 
