@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   
+  <!-- Old HTML Links -->
+  
   
   
 </head>
@@ -78,14 +80,96 @@
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
                     Explore individual companies in the data and the breakdown of their ESG scores and performance.
                 </p>
-                
             </div>
+            <div class="row" id="SearchingForm">
+          <div class="col-lg-4"></div>
+          <div class="col-lg-4">
+          <h2 style="color:rgb(7, 133, 47)">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" id="stockInput" type="search" placeholder="Ex: AMZN" aria-label="Search">
+              <button class="btn btn-success active my-2 my-sm-0" id="submit" type="submit">Stock Ticker</button>
+            </form>
+          </h2>
+        </div>
+        <div class="col-lg-4"></div>
+        </div>
         </div>
     </div>
 
 </section>
 
+<div id="descriptor">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3">
+          <a id="Company-Website-Link"><img class="img-thumbnail" id="Compant-Logo"></a>
+        </div>
+        <div class="col-lg-6">
+          <div class="panel panel-primary">
+            <h4>
+              <div class="panel-body" id="Company-Name"></div>
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <h6 id="Company-Details-Header"></h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="panel panel-primary">
+            <div class="panel-body" id="Company-Description"></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <h5>
+            <div class="panel-body" id="company-details-add"></div>
+          </h5>
+          <table id="details-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3" id="Gauge_ESG"></div>
+        <div class="col-lg-3" id="Gauge_E"></div>
+        <div class="col-lg-3" id="Gauge_S"></div>
+        <div class="col-lg-3" id="Gauge_G"></div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12" id="Stock_Chart"></div>
+      </div>
 
+      <div class="row">
+        <div class="col-lg-12">
+          <table class="table" id="summary-table">
+            <thead class="thead-dark">
+              <tr>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Stock Analysis Input Files Needed -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="../static/js/stock_analysis.js"></script>
+<!--                                   -->
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
