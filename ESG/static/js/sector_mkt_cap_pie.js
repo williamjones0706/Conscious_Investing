@@ -66,7 +66,7 @@ function init() {
 }
 
 // On change to the DOM, call getData()
-d3.selectAll("#selDataset").on("change", getData);
+d3.selectAll("#selDataset_sector").on("change", getData);
 
 // Function called by DOM changes
 function getData() {
