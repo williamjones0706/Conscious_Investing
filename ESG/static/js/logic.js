@@ -1,11 +1,13 @@
 var url = "../static/data/ESG_Database.json";
-var API_KEY = "/mapbox";
+
 // Create a map object
 d3.json(url).then((data) => {
   var myMap = L.map("map", {
     center: [15.5994, -28.6731],
     zoom: 3
   });
+
+  var API_KEY = "/mapboxkey";
 
   var tile = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
@@ -21,7 +23,7 @@ d3.json(url).then((data) => {
   var new_data = [];
   for (const [key, value] of Object.entries(data['Company Name'])) {
     var temp = {};
-    temp['ESG Risk Score'] = 1/data['ESG Risk Score'][key];
+    temp['ESG Risk Score'] = 1 / data['ESG Risk Score'][key];
     temp['Coordinates'] = [data['Latitude'][key], data['Longitude'][key]];
     temp['Latitude'] = data['Latitude'][key];
     temp['Longitude'] = data['Longitude'][key];
@@ -33,28 +35,28 @@ d3.json(url).then((data) => {
   }
 
   //myMap.addLayer(markers)
-/**
- 
- full_data = {
-   max: 8,
-   data: new_data
-  }
-  
-  var config = {
-    "radius": 0.5,
-    "maxOpacity": .8,
-    "scaleRadius": true,
-    "useLocalExtrema": true,
-    latField: 'Latitude',
-    lngField: 'Longitude',
-    valueField: 'ESG Risk Score'
-  }
-  
-  var heatmapLayer = new HeatmapOverlay(config);
-  
-  heatmapLayer.addTo(myMap)
-  heatmapLayer.setData(full_data)
-*/
+  /**
+   
+   full_data = {
+     max: 8,
+     data: new_data
+    }
+    
+    var config = {
+      "radius": 0.5,
+      "maxOpacity": .8,
+      "scaleRadius": true,
+      "useLocalExtrema": true,
+      latField: 'Latitude',
+      lngField: 'Longitude',
+      valueField: 'ESG Risk Score'
+    }
+    
+    var heatmapLayer = new HeatmapOverlay(config);
+    
+    heatmapLayer.addTo(myMap)
+    heatmapLayer.setData(full_data)
+  */
 
   /**
   for (var i = 0; i < new_data.length; i++) {
@@ -125,4 +127,3 @@ d3.json(url).then((data) => {
 
 
 
- 
