@@ -58,22 +58,22 @@ def index():
     """Return the homepage."""
     return render_template("index.html")
 
-@app.route("/company-search")
+@app.route("/company_search")
 def company_search():
     """Return the company search page."""
     return render_template("company_search.html")
 
-@app.route("/data-table")
+@app.route("/data_table")
 def data_table():
     """Return the data table."""
     return render_template("data_table.html")
 
-@app.route("/deep-dive")
+@app.route("/deep_dive")
 def deep_dive():
     """Return the deep_dive info for industry/sector/funnel,etc."""
     return render_template("deep_dive.html")
 
-@app.route("/esg-breakdown")
+@app.route("/esg_breakdown")
 def esg_breakdown():
     """Return the history and breakdown page."""
     return render_template("esg_breakdown.html")
