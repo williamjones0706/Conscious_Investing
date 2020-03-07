@@ -105,39 +105,3 @@
 .even {
   background: #99FFD6;
 }
-
-/* ----FOOTER START---- */
-.footer navbar-fixed-bottom {
-  /* Positioning */
-  clear: both;
-  background-color:lightgreen;
-  padding:10px;
-  bottom: 0;
-
-  /* Box-model */
-  width: 100%;
-  height: 60px;
-  margin-top: 30px;
-
-  /* Visual */
-  background-color: lightgreen;
-}
-
-.text-muted-footer{
-  /* Positioning */
-  margin-top: 10px;
-
-  /* Typography */
-  font-size: small;
-  color: gray;
-}
-
-.two-toned-footer-color {
-  /* Box-model */
-  height: 6px;
-  padding-top: 3px;
-
-  /* Visual */
-  background-color:grey;
-}
-/* ----FOOTER END---- */
