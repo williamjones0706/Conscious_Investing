@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../static/css/assets/theme/css/style.css">
     <link rel="preload" as="style" href="../static/css/assets/mobirise/css/mbr-additional.css">
     <link rel="stylesheet" href="../static/css/assets/mobirise/css/mbr-additional.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/sliders.css" media="screen">
 </head>
 
 <body>
@@ -135,10 +136,17 @@
                         <h5 class="card-title pb-3 mbr-fonts-style display-7">
                             Environment</h5>
                         <p class="mbr-text mbr-fonts-style display-7">How important is it for you to invest in companies
-                            that are actively good stewards for the environment?&nbsp;<br></p>
-                        <input class="slider" id="ENV" type="range" min="1" max="10" step="1" value="10"
-                            oninput="outputUpdate(this.value)">
-                        <output for="ENV" id="envOUT">10</output>
+                            that are actively good stewards for the environment?
+                        </p>
+                        <form>
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">0</span>
+                            <input type="range" name="foo" min="0" max="10" style="width: 250px;" oninput="outputUpdate(this.value)">
+                            <!-- <input class="slider" id="ENV" type="range" min="1" max="10" step="1" value="10"
+                            oninput="outputUpdate(this.value)"> -->
+                            <output for="foo" onforminput="value = foo.valueAsNumber;" id="envOUT"></output>
+                            <!-- <output for="ENV" id="envOUT"></output> -->
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">10</span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -149,10 +157,18 @@
                         <h5 class="card-title pb-3 mbr-fonts-style display-7">
                             Social</h5>
                         <p class="mbr-text mbr-fonts-style display-7">How important is it for you to invest in companies
-                            that treat their employees well and lobby for social justice issues?<br>&nbsp;<br></p>
-                        <input class="slider" id="SOC" type="range" min="1" max="10" step="1" value="10"
-                            oninput="outputUpdate2(this.value)">
-                        <output for="SOC" id="socOUT">10</output>
+                            that treat their employees well and lobby for social justice issues?
+                        </p>
+                        <form>
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">0</span>
+                            <input type="range" name="foo" min="0" max="10" style="width: 250px;" oninput="outputUpdate2(this.value)">
+                            <!-- <input class="slider" id="SOC" type="range" min="1" max="10" step="1" value="10"
+                            oninput="outputUpdate2(this.value)"> -->
+                            <!-- <output for="SOC" id="socOUT">10</output> -->
+                            <output for="foo" onforminput="value = foo.valueAsNumber;" id="socOUT"></output>
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">10</span>
+                        </form>
+                       
                     </div>
                 </div>
             </div>
@@ -162,12 +178,18 @@
                     <div class="card-box">
                         <h5 class="card-title pb-3 mbr-fonts-style display-7">
                             Governance</h5>
-                        <p class="mbr-text mbr-fonts-style display-7">How important is it for you to invest in well-run
+                        <p class="mbr-text mbr-fonts-style display-7">How important is it for you to invest in 
                             companies whose corporate incentives align with the business’ success?
                         </p>
-                        <input class="slider" id="GOV" type="range" min="1" max="10" step="1" value="10"
+                        <form>
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">0</span>
+                            <input type="range" name="foo" min="0" max="10" style="width: 250px;" oninput="outputUpdate3(this.value)">
+                            <!-- <input class="slider" id="GOV" type="range" min="1" max="10" step="1" value="10"
                             oninput="outputUpdate3(this.value)">
-                        <output for="GOV" id="govOUT">10</output>
+                            <output for="GOV" id="govOUT">10</output> -->
+                            <output for="foo" onforminput="value = foo.valueAsNumber;" id="govOUT"></output>
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">10</span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -216,8 +238,9 @@
     <script src="../static/css/assets/dropdown/js/navbar-dropdown.js"></script>
     <script src="../static/css/assets/touchswipe/jquery.touch-swipe.min.js"></script>
     <script src="../static/css/assets/theme/js/script.js"></script>
-
+    
 
 </body>
+<script src="../static/js/sliders.js"></script>
 
 </html>
