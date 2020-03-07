@@ -1,5 +1,5 @@
 var url = "../static/data/ESG_Database.json";
-
+var API_KEY = "/mapbox";
 // Create a map object
 d3.json(url).then((data) => {
   var myMap = L.map("map", {

@@ -34,6 +34,7 @@ if (IS_HEROKU):
     remote_esg_dbname = os.environ['remote_esg_dbname']
     remote_esg_dbuser = os.environ['remote_esg_dbuser']
     remote_esg_dbpwd = os.environ['remote_esg_dbpwd']
+    API_key = os.environ['mapboxkey']
 else:
     from config import remote_esg_host, remote_db_port, remote_esg_dbname, remote_esg_dbuser, remote_esg_dbpwd 
 
@@ -83,7 +84,12 @@ def recommendations():
     """Return the recommendations page."""
     return render_template("recommendations.html")
 
-    
+@app.route("/mapboxkey")
+def mapbox():
+    """Return the recommendations page."""
+    return API_key
+
+
 # @app.route('/api/data/esg')
 # def get_esg_data():
 #     conn = engine.connect()
