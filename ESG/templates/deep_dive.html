@@ -10,7 +10,9 @@
     <link rel="shortcut icon" href="../static/css/assets/images/landing-page-image-122x98.png" type="image/x-icon">
     <meta name="description" content="">
 
-    <title>Home</title>
+
+    <title>ESG Deep Dive</title>
+    <!-- stylesheet links for the builder template -->
     <link rel="stylesheet" href="../static/css/assets/web/assets/mobirise-icons/mobirise-icons.css">
     <link rel="stylesheet" href="../static/css/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/assets/bootstrap/css/bootstrap-grid.min.css">
@@ -22,15 +24,40 @@
     <link rel="preload" as="style" href="../static/css/assets/mobirise/css/mbr-additional.css">
     <link rel="stylesheet" href="../static/css/assets/mobirise/css/mbr-additional.css" type="text/css">
 
+    <!-- Industry, Funnel, Distribution, and Sector  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../static/js/industry.js"></script>
+    <script src="../static/js/stock_perf_2019_funnel.js"></script>
+    <script src="../static/js/histogram.js"></script>
+    <script src="../static/js/sector_mkt_cap_pie.js"></script>
+    <script src="../static/data/sector_count.json"></script>
+    <script src="../static/data/small_cap.json"></script>
+    <script src="../static/data/mid_cap.json"></script>
+    <script src="../static/data/large_cap.json"></script>
+
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+        integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin="" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/heatmapjs@2.0.2/heatmap.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+        integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+        crossorigin=""></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
+
+    <script type="text/javascript"
+        src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
 
 
 </head>
 
 <body>
+    <!-- navbar  -->
     <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-0">
-
-
-
         <nav
             class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -65,241 +92,490 @@
                     <li class="nav-item"><a class="nav-link link text-white display-4"
                             href="https://conscious-investing-v2.herokuapp.com/">
                         </a></li>
-                    <li class="nav-item"><a class="nav-link link text-white display-4"
-                            href="https://conscious-investing-v2.herokuapp.com/"><span
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="index.html"><span
                                 class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
                             Home</a></li>
                     <li class="nav-item"><a class="nav-link link text-white display-4"
-                            href="https://conscious-investing-v2.herokuapp.com/recommendations"><span
+                            href="esg_breakdown.html"><span
+                                class="mbri-database mbr-iconfont mbr-iconfont-btn"></span>
+                            ESG Breakdown</a></li>
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="recommendations.html"><span
                                 class="mbri-touch mbr-iconfont mbr-iconfont-btn"></span>
                             Get Company Recommendations</a></li>
-                    <li class="nav-item"><a class="nav-link link text-white display-4"
-                            href="https://conscious-investing-v2.herokuapp.com/company-search"><span
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="company_search.html"><span
                                 class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
                             Company Search</a></li>
-                    <li class="nav-item"><a class="nav-link link text-white display-4"
-                            href="https://conscious-investing-v2.herokuapp.com/deep-dive"><span
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="deep_dive.html"><span
                                 class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span>
                             ESG Deep Dive</a></li>
-                    <li class="nav-item"><a class="nav-link link text-white display-4"
-                            href="https://conscious-investing-v2.herokuapp.com/data-table"><span
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="data_table.html"><span
                                 class="mbri-database mbr-iconfont mbr-iconfont-btn"></span>
                             ESG Data table</a></li>
                 </ul>
-
             </div>
         </nav>
     </section>
 
     <section class="engine"><a href="https://conscious-investing-v2.herokuapp.com/">free amp template</a></section>
 
+    <!-- headers and content for each area of the deep dive ESG info -->
+    <!-- intro section -->
     <section class="header1 cid-rRKKxnqFI3" id="header16-x">
-
-
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-md-10 align-center">
                     <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
-                        FULL WIDTH INTRO
+                        ESG Deep Dive
                     </h1>
-
-                    <p class="mbr-text pb-3 mbr-fonts-style display-5">Take a deeper look at ESG data and how its
-                        distrubted by geographay, performance, sector and industry.
-                    </p>
-
                 </div>
             </div>
         </div>
 
     </section>
 
-    <section class="mbr-section content4 cid-rRKEVSBGrU" id="content4-n">
+    <!-- links to sections -->
+    <section>
+        <div class="row">
+            <div class="col-12">
+                <ul class="align-center">
 
-
-
-        <div class="container">
-            <div class="media-container-row">
-                <div class="title col-12 col-md-8">
-                    <h2 class="align-center pb-3 mbr-fonts-style display-2">ESG Map Data</h2>
-                    <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
-                        Blah blah blah blah blah (add your stuff inside this container).
-                    </h3>
-
-                </div>
+                    <li style="display:inline; padding-right: 10px"><a href="#MAPCHART"><span
+                                class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                            ESG Map Data</a></li>
+                    <li style="display:inline; padding-right: 10px"><a href="#PerformanceData"><span
+                                class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                            ESG Performance Data</a></li>
+                    <li style="display:inline; padding-right: 10px"><a href="#ScoreDistribution"><span
+                                class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                            ESG Score Disitribution</a></li>
+                    <li style="display:inline; padding-right: 10px"><a href="#SectorData"><span
+                                class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                            ESG Sector Data</a></li>
+                    <li style="display:inline; padding-right: 10px"><a href="#IndustryData"><span
+                                class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                            ESG Industry Data</a></li>
+                </ul>
             </div>
-        </div>
-        <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
-            <a href="#next">
-                <i class="mbri-down mbr-iconfont"></i>
-            </a>
         </div>
     </section>
 
-    <section class="mbr-section content4 cid-rRKFePd4uZ" id="content4-p">
-
-
-
-        <div class="container">
-            <div class="media-container-row">
-                <div class="title col-12 col-md-8">
-                    <h2 class="align-center pb-3 mbr-fonts-style display-2">ESG Funnel</h2>
-                    <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
-                        Shape your future web project with sharp design and refine coded functions.
-                    </h3>
-
-                </div>
-            </div>
-        </div>
-        <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
-            <a href="#next">
-                <i class="mbri-down mbr-iconfont"></i>
-            </a>
-        </div>
-    </section>
-
-    <section class="mbr-section content4 cid-rRKFdNAgRz" id="content4-o">
-
-
-
-        <div class="container">
-            <div class="media-container-row">
-                <div class="title col-12 col-md-8">
-                    <h2 class="align-center pb-3 mbr-fonts-style display-2">
-                        ESG Distribution</h2>
-                    <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
-                        Shape your future web project with sharp design and refine coded functions.
-                    </h3>
-
-                </div>
-            </div>
-        </div>
-        <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
-            <a href="#next">
-                <i class="mbri-down mbr-iconfont"></i>
-            </a>
-        </div>
-    </section>
-
-    <section class="mbr-section content4 cid-rRKFfZ6zW2" id="content4-q">
-
-
-
-        <div class="container">
-            <div class="media-container-row">
-                <div class="title col-12 col-md-8">
-                    <h2 class="align-center pb-3 mbr-fonts-style display-2">ESG Sector Data</h2>
-                    <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
-                        Shape your future web project with sharp design and refine coded functions.
-                    </h3>
-
-                </div>
-            </div>
-        </div>
-        <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
-            <a href="#next">
-                <i class="mbri-down mbr-iconfont"></i>
-            </a>
-        </div>
-    </section>
-
-    <section class="mbr-section content4 cid-rRKGGbJEIO" id="content4-r">
-
-
-
-        <div class="container">
-            <div class="media-container-row">
-                <div class="title col-12 col-md-8">
-                    <h2 class="align-center pb-3 mbr-fonts-style display-2">
-                        ESg Industry Data</h2>
-                    <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
-                        Shape your future web project with sharp design and refine coded functions.
-                    </h3>
-
-                </div>
-            </div>
-        </div>
-        <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
-            <a href="#next">
-                <i class="mbri-down mbr-iconfont"></i>
-            </a>
-        </div>
-    </section>
-
-    <section class="mbr-section article content9 cid-rRKGUXuE1m" id="content9-s">
-
-
-
-        <div class="container">
-            <div class="inner-container" style="width: 100%;">
-                <hr class="line" style="width: 25%;">
-                <div class="section-text align-center mbr-fonts-style display-5">
-                    Mobirise is one of the easiest website development tools available today. It also gives you the
-                    freedom to develop as many websites as you like given the fact that it is a desktop app.
-                </div>
-                <hr class="line" style="width: 25%;">
-            </div>
-        </div>
-        <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
-            <a href="#next">
-                <i class="mbri-down mbr-iconfont"></i>
-            </a>
-        </div>
-    </section>
-
-    <section class="cid-rRKL8sFNbA" id="footer1-y">
-
-
-
-
-
-        <div class="container">
-            <div class="media-container-row content text-white">
-                <div class="col-12 col-md-3">
-                    <div class="media-wrap">
-                        <a href="https://conscious-investing-v2.herokuapp.com/">
-                            <img src="../static/css/assets/images/landing-page-image-1-192x155.png" alt="Mobirise"
-                                title="">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 col-md-3 mbr-fonts-style display-4">
-                    <h5 class="pb-3">
-                        Links
-                    </h5>
-                    <p class="mbr-text"><a href="https://github.com/williamjones0706/Councious_Investing">Github
-                            <br></a></p>
-                </div>
-            </div>
-            <div class="footer-lower">
+    <!-- map section into -->
+    <div id="MAPCHART">
+        <section class="mbr-section content4 cid-rRKEVSBGrU" id="content4-n">
+            <div class="container">
                 <div class="media-container-row">
-                    <div class="col-sm-12">
-                        <hr>
+                    <div class="title col-12 col-md-8">
+                        <h2 class="align-center pb-3 mbr-fonts-style display-2">ESG Map Data</h2>
+                        <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                            The interactive map locates the headquarters of all the 724 companies.
+                            The circles when clicked provide markers in the radius. The markers include the Company
+                            Name, ESG Risk Score and the Market Capital. Where there is a heavy concentration of the
+                            company HQs a circle with a number is indicated to show the cluster of the company HQ
+                            numbers. Clicking into it will enable you to find list of markers in a specific area.
+                        </h3>
                     </div>
                 </div>
-                <div class="media-container-row mbr-white">
-                    <div class="col-sm-6 copyright">
-                        <p class="mbr-text mbr-fonts-style display-4">
-                            © Copyright 2019 Mobirise - All Rights Reserved
-                        </p>
-                    </div>
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="align-center">
 
+                            <li style="display:inline; padding-right: 10px"><a href="#MAPCHART"><span
+                                        class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                    ESG Map Data</a></li>
+                            <li style="display:inline; padding-right: 10px"><a href="#PerformanceData"><span
+                                        class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                    ESG Performance Data</a></li>
+                            <li style="display:inline; padding-right: 10px"><a href="#ScoreDistribution"><span
+                                        class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                    ESG Score Disitribution</a></li>
+                            <li style="display:inline; padding-right: 10px"><a href="#SectorData"><span
+                                        class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                    ESG Sector Data</a></li>
+                            <li style="display:inline; padding-right: 10px"><a href="#IndustryData"><span
+                                        class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                    ESG Industry Data</a></li>
+                        </ul>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- map section input  -->
+        <section>
+            <div id="descriptor" style="background-color:rgb(137, 224, 195)">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12" id="MAPChart">
+
+                            <!-- <div id="options">Click on the clusters</div> -->
+                            <!-- The div where we will inject our map -->
+                            <div id="map" style="height: 650px; position: relative; outline: none"></div>
+                            <!-- MAP API key -->
+                            <script type="text/javascript" src="../static/js/config.js"></script>
+                            <!-- MAP JS -->
+                            <script type="text/javascript" src="../static/js/logic.js"></script>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- down arrow section to move to next container -->
+        <section>
+            <div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
+                <a href="#next">
+                    <i class="mbri-down mbr-iconfont"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- funnel intro section-->
+        <div id="PerformanceData">
+            <section class="mbr-section content4 cid-rRKFePd4uZ" id="content4-p">
+                <div class="container">
+                    <div class="media-container-row">
+                        <div class="title col-12 col-md-8">
+                            <h2 class="align-center pb-3 mbr-fonts-style display-2">ESG 2019 Stock Performance</h2>
+                            <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                                View the number of stocks in each performance bin and their value changes over the
+                                12-month
+                                period. The dataset powering this site includes 724 publicly traded companies whose ESG
+                                risk
+                                scores are publicly available. The funnel plot shows how well these companies have
+                                performed
+                                in
+                                2019. For example, 421 of the 724 stocks gained more than 20% in value over 12 months.
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="align-center">
+
+                                <li style="display:inline; padding-right: 10px"><a href="#MAPCHART"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Map Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#PerformanceData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Performance Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#ScoreDistribution"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Score Disitribution</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#SectorData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Sector Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#IndustryData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Industry Data</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- funnel input section -->
+        <section>
+            <div class="container">
+                <div class="align-center" id="funnel"></div>
+            </div>
+        </section>
+
+        <!-- down arrow to move to next container -->
+        <section>
+            <div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
+                <a href="#next">
+                    <i class="mbri-down mbr-iconfont"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- distribution of ESG intro -->
+        <div id="ScoreDistribution">
+            <section class="mbr-section content4 cid-rRKFdNAgRz" id="content4-o">
+                <div class="container">
+                    <div class="media-container-row">
+                        <div class="title col-12 col-md-8">
+                            <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                                ESG Distribution</h2>
+                            <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                                This histogram shows the distribution of the 724 companies' ESG risk scores. Use the
+                                dropdown
+                                menu to choose between the Aggregate or individual component scores (i.e.,
+                                Environmental,
+                                Social, or Governance). As an example, of the companies studied, 269 have scores between
+                                20
+                                and
+                                29. Note: Lower risk scores (for aggregate and individual categories) indicate
+                                lower-risk
+                                stocks.
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="align-center">
+
+                                <li style="display:inline; padding-right: 10px"><a href="#MAPCHART"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Map Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#PerformanceData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Performance Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#ScoreDistribution"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Score Disitribution</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#SectorData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Sector Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#IndustryData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Industry Data</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- distribution of ESG input -->
+        <section>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div id="histogram2"></div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+        </section>
+
+        <!-- down arrow to move to next container -->
+        <section>
+            <div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
+                <a href="#next">
+                    <i class="mbri-down mbr-iconfont"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- sector data intro -->
+        <div id="SectorData">
+            <section class="mbr-section content4 cid-rRKFfZ6zW2" id="content4-q">
+                <div class="container">
+                    <div class="media-container-row">
+                        <div class="title col-12 col-md-8">
+                            <h2 class="align-center pb-3 mbr-fonts-style display-2">ESG Sector Data</h2>
+                            <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                                This donut plot illustrates the industrial sector composition of the data. This plot is
+                                dynamic
+                                allows selection of the subset of companies one is interested in understanding in terms
+                                of
+                                their
+                                market capitalization. For instance, by selecting Mid Cap companies in the dropdown
+                                menu,
+                                one
+                                can see that 10% of the companies analyzed are from the Basic Materials sector.
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="align-center">
+
+                                <li style="display:inline; padding-right: 10px"><a href="#MAPCHART"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Map Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#PerformanceData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Performance Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#ScoreDistribution"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Score Disitribution</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#SectorData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Sector Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#IndustryData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Industry Data</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- sector data input -->
+        <section>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6" id="SECTORChart">
+                        <select id="selDataset_sector">
+                            <option value="all">All (724 Companies)</option>
+                            <option value="sc">Small Cap (7 Companies, < $2B)</option>
+                            <option value="mc">Mid Cap (184 Companies, $2B - $10B)</option>
+                            <option value="lc">Large Cap (533 Companies, > $10B)</option>
+                        </select>
+
+                        <div id="pie"></div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- down arrow to move to next container -->
+        <section>
+            <div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="mbr-arrow hidden-sm-down" aria-hidden="true">
+                <a href="#next">
+                    <i class="mbri-down mbr-iconfont"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- industry data intro -->
+        <div id="IndustryData">
+            <section class="mbr-section content4 cid-rRKGGbJEIO" id="content4-r">
+                <div class="container">
+                    <div class="media-container-row">
+                        <div class="title col-12 col-md-8">
+                            <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                                ESG Industry Data</h2>
+                            <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                                Select from the dropdown to view average ESG risk scores for each of the industries in
+                                the
+                                data
+                                and
+                                compare them to the top 10 industry scores.
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="align-center">
+
+                                <li style="display:inline; padding-right: 10px"><a href="#MAPCHART"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Map Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#PerformanceData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Performance Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#ScoreDistribution"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Score Disitribution</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#SectorData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Sector Data</a></li>
+                                <li style="display:inline; padding-right: 10px"><a href="#IndustryData"><span
+                                            class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
+                                        ESG Industry Data</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- industry data input -->
+        <section>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="well">
+                            <h5><strong>Select Industry Name:</strong></h5>
+                            <select id="selDataset" onchange="optionChanged(this.value)"></select>
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"></h4>
+                            </div>
+                            <div id="industry_name" class="panel-body"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div id="industry_individual"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div id="top10_industries_bar"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- footer -->
+    <section class="cid-rRKL8sFNbA" id="footer1-y">
+        <div class="row">
+            <div class="media-wrap">
+                <a href="https://conscious-investing-v2.herokuapp.com/">
+                    <img src="../static/css/assets/images/landing-page-image-1-192x155.png" alt="Mobirise" title="">
+                </a>
+            </div>
+            <div>
+
+                <p class="mbr-text"><a href="https://github.com/williamjones0706/Councious_Investing">Github
+                    </a></p>
+                    </a></p>
+                <p class="mbr-text" style="color:azure">
+                    © Copyright 2019 Mobirise - All Rights Reserved
+                </p>
             </div>
         </div>
     </section>
 
-    <script src="../static/css/assets/web/assets/jquery/jquery.min.js"></script>
-    <script src="../static/css/assets/popper/popper.min.js"></script>
-    <script src="../static/css/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../static/css/assets/tether/tether.min.js"></script>
-    <script src="../static/css/assets/smoothscroll/smooth-scroll.js"></script>
-    <script src="../static/css/assets/dropdown/js/nav-dropdown.js"></script>
-    <script src="../static/css/assets/dropdown/js/navbar-dropdown.js"></script>
-    <script src="../static/css/assets/touchswipe/jquery.touch-swipe.min.js"></script>
-    <script src="../static/css/assets/theme/js/script.js"></script>
+        <!-- Mobirise sources -->
+        <script src="../static/css/assets/web/assets/jquery/jquery.min.js"></script>
+        <script src="../static/css/assets/popper/popper.min.js"></script>
+        <script src="../static/css/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../static/css/assets/tether/tether.min.js"></script>
+        <script src="../static/css/assets/smoothscroll/smooth-scroll.js"></script>
+        <script src="../static/css/assets/dropdown/js/nav-dropdown.js"></script>
+        <script src="../static/css/assets/dropdown/js/navbar-dropdown.js"></script>
+        <script src="../static/css/assets/touchswipe/jquery.touch-swipe.min.js"></script>
+        <script src="../static/css/assets/theme/js/script.js"></script>
 
+
+        <!-- Industry, Funnel, Distribution, and Sector-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="../static/js/industry.js"></script>
+        <script src="../static/js/stock_perf_2019_funnel.js"></script>
+        <script src="../static/js/histogram.js"></script>
+        <script src="../static/js/sector_mkt_cap_pie.js"></script>
+        <script src="../static/data/sector_count.json"></script>
+        <script src="../static/data/small_cap.json"></script>
+        <script src="../static/data/mid_cap.json"></script>
+        <script src="../static/data/large_cap.json"></script>
 
 </body>
 
