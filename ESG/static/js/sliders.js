@@ -42,45 +42,35 @@ function modifyInputs() {
 }
 
 
-function handleSubmit() {
+async function handleSubmit(event) {
     var envi = 33.33 - envOUT.value*3.33;
     var soci = 33.33 - socOUT.value*3.33;
     var govi = 33.33 - govOUT.value*3.33;
-    console.log(envi);
-    console.log(soci);
-    console.log(govi);
+    // console.log(envi);
+    // console.log(soci);
+    // console.log(govi);
 
+    // event.preventDefault();
+    let json={
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        redirect: "follow",
+        referrer: "no-referrer",
+        data: {
+          "E": envi,
+          "S": soci,
+          "G": govi,        
+        }
+    }
+console.log(json.data);
 
 }
-
-// async function handleSubmit(event) {
-//     event.preventDefault()
-//     let json={
-//         method: "POST",
-//         mode: "cors",
-//         cache: "no-cache",
-//         credentials: "same-origin",
-//         headers: {
-//           "Content-Type": "application/json"
-//         },
-//         redirect: "follow",
-//         referrer: "no-referrer",
-//         data: {
-//           E: envOUT.value,
-//           S: socOUT.value,
-//           G: govOUT.value,        
-//         }
-//     }
-    
-// }
-
-
-
-// console.log(envOUT.value);
-// console.log(socOUT.value);
-// console.log(govOUT.value);
 
 
 
 modifyInputs();
-// myfunction();
