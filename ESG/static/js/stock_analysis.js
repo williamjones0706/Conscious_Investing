@@ -350,6 +350,7 @@ function getIncomeStatementData(stock) {
     console.log(data);
     buildIncomeSheetHeaders(dates);
     buildIncomeSheetRows(dates, revenue, cost_of_revenue, gross_profit, research_expenses, SGA_expenses,operating_expenses,operating_income,interest_expense,earnings_before_tax,income_tax_expense,net_income,eps);
+    build_Income_Statement_Plots(dates, revenue, cost_of_revenue, gross_profit, research_expenses, SGA_expenses,operating_expenses,operating_income,interest_expense,earnings_before_tax,income_tax_expense,net_income,eps);
   });
 }
 
@@ -535,4 +536,59 @@ function buildBalanceSheetRows(dates, revenue, gross_profit) {
   for (var i = 8; i < date_length; i++) {
     tgross_profit.append('td').text(formatNumber(gross_profit[i]))
   }
+}
+
+
+function build_Income_Statement_Plots(dates, revenue, cost_of_revenue, gross_profit, research_expenses, SGA_expenses,operating_expenses,operating_income,interest_expense,earnings_before_tax,income_tax_expense,net_income,eps) {
+  var date_length = dates.length
+  var x_data = [];
+  var y_revenue = [];
+  var y_cost_of_revenue = [];
+  var y_gross_profit = [];
+  var y_research_expenses = [];
+  var y_SGA_expenses = [];
+  var y_operating_expenses = [];
+  var y_operating_income = [];
+  var y_interest_expense = [];
+  var y_earnings_before_tax = [];
+  var y_cost_of_revenue = [];
+  var y_cost_of_revenue = [];
+  var y_cost_of_revenue = [];
+
+
+  for (var i = 3; i < date_length; i++) {
+    x_data.push(formatYear(dates[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_data.push(formatNumber(revenue[i]))
+  }
+  var trace1 = {
+    x: x_data,
+    y: y_data,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  
+  var data = [trace1];
+  
+  var layout = {
+    title: 'Revenue',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: -45
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  
+  Plotly.newPlot('Revenue_Chart', data, layout);
+  
 }
