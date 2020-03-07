@@ -87,7 +87,8 @@ def recommendations():
 @app.route("/mapboxkey")
 def mapbox():
     """Return the recommendations page."""
-    return API_key
+    key=API_key    
+    return json.dumps(key)
 
 
 # @app.route('/api/data/esg')
