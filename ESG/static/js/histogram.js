@@ -7,7 +7,7 @@ var url = "../static/data/ESG_Database.json";
 // create dropdown option for each sample id
 
 function init() {
-  
+
   d3.json(url).then((response2) => {
 
     var scoresObj = {};
@@ -36,7 +36,7 @@ function updateHist(scoresObj) {
       type: "histogram",
       autobonx: false,
       // opacity: 1,
-      name:i+" count",
+      name: i + " count",
       histfunc: "count",
       histnorm: "count",
       marker: {
@@ -54,40 +54,40 @@ function updateHist(scoresObj) {
       }
     };
   }
- // @TODO: initialize with populated histogram 
-  Plotly.react("histogram2", ["default","agg","env","soc","gov"].map(makeTrace), {
-    updatemenus: [ 
+  // @TODO: initialize with populated histogram 
+  Plotly.react("histogram2", ["default", "agg", "env", "soc", "gov"].map(makeTrace), {
+    updatemenus: [
       {
         x: 0.95,
         yanchor: "top",
         buttons: [{
           method: "restyle",
-          args: ["visible", [true,false,false,false,false]],
+          args: ["visible", [true, false, false, false, false]],
           label: "Select Category"
         }, {
-            method: "restyle",
-            args: ["visible", [false,true,false,false,false]],
-            label: "Aggregate"
+          method: "restyle",
+          args: ["visible", [false, true, false, false, false]],
+          label: "Aggregate"
         }, {
-            method: "restyle",
-            args: ["visible", [false,false,true,false,false]],
-            label: "Environmental"
+          method: "restyle",
+          args: ["visible", [false, false, true, false, false]],
+          label: "Environmental"
         }, {
-            method: "restyle",
-            args: ["visible", [false,false,false,true,false]],
-            label: "Social"
+          method: "restyle",
+          args: ["visible", [false, false, false, true, false]],
+          label: "Social"
         }, {
-            method: "restyle",
-            args: ["visible", [false,false,false,false,true]],
-            label: "Governance"
+          method: "restyle",
+          args: ["visible", [false, false, false, false, true]],
+          label: "Governance"
         }]
-    }],
-    bargap: 2, 
-    bargroupgap: 2, 
-    barmode: "group", 
-    title: "ESG Risk Score Distribution", 
-    xaxis: {title: "Risk Score"}, 
-    yaxis: {title: "Frequency"}
+      }],
+    bargap: 2,
+    bargroupgap: 2,
+    barmode: "group",
+    title: "<b>ESG Risk Score Distribution</b>",
+    xaxis: { title: "<b>Risk Score</b>" },
+    yaxis: { title: "<b>Frequency</b>" }
   });
 
 }
