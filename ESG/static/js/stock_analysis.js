@@ -551,36 +551,68 @@ function build_Income_Statement_Plots(dates, revenue, cost_of_revenue, gross_pro
   var y_operating_income = [];
   var y_interest_expense = [];
   var y_earnings_before_tax = [];
-  var y_cost_of_revenue = [];
-  var y_cost_of_revenue = [];
-  var y_cost_of_revenue = [];
+  var y_income_tax_expense = [];
+  var y_net_income = [];
+  var y_eps = [];
 
 
   for (var i = 3; i < date_length; i++) {
     x_data.push(formatYear(dates[i]))
   }
   for (var i = 3; i < date_length; i++) {
-    y_data.push(formatNumber(revenue[i]))
+    y_revenue.push(formatNumber(revenue[i]))
   }
-  var trace1 = {
+  for (var i = 3; i < date_length; i++) {
+    y_cost_of_revenue.push(formatNumber(cost_of_revenue[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_gross_profit.push(formatNumber(gross_profit[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_research_expenses.push(formatNumber(research_expenses[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_SGA_expenses.push(formatNumber(SGA_expenses[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_operating_expenses.push(formatNumber(operating_expenses[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_operating_income.push(formatNumber(operating_income[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_interest_expense.push(formatNumber(interest_expense[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_earnings_before_tax.push(formatNumber(earnings_before_tax[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_income_tax_expense.push(formatNumber(income_tax_expense[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_net_income.push(formatNumber(net_income[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_eps.push(eps[i])
+  }
+
+  var trace_revenue = {
     x: x_data,
-    y: y_data,
+    y: y_revenue,
     type: 'bar',
     marker: {
       color: 'rgb(142,124,195)'
     }
   };
-  
-  var data = [trace1];
-  
-  var layout = {
+  var data_revenue = [trace_revenue];
+  var layout_revenue = {
     title: 'Revenue',
     font:{
       family: 'Raleway, sans-serif'
     },
     showlegend: false,
     xaxis: {
-      tickangle: -45
+      tickangle: 0
     },
     yaxis: {
       zeroline: false,
@@ -588,7 +620,292 @@ function build_Income_Statement_Plots(dates, revenue, cost_of_revenue, gross_pro
     },
     bargap :0.05
   };
+  Plotly.newPlot('Revenue_Chart', data_revenue, layout_revenue);
+
+  var trace_cost_of_revenue = {
+    x: x_data,
+    y: y_cost_of_revenue,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_cost_of_revenue = [trace_cost_of_revenue];
+  var layout_cost_of_revenue = {
+    title: 'Cost of Revenue',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('Cost_of_Revenue_Chart', data_cost_of_revenue, layout_cost_of_revenue);
+
+  var trace_gross_profit = {
+    x: x_data,
+    y: y_gross_profit,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_gross_profit = [trace_gross_profit];
+  var layout_gross_profit = {
+    title: 'Gross Profit',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('Gross_Profit_Chart', data_gross_profit, layout_gross_profit);
+
+  var trace_research_expenses = {
+    x: x_data,
+    y: y_research_expenses,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_research_expenses = [trace_research_expenses];
+  var layout_research_expenses = {
+    title: 'Research & Development Expenses',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('Research_Expenses_Chart', data_research_expenses, layout_research_expenses);
+
+  var trace_SGA_expenses = {
+    x: x_data,
+    y: y_SGA_expenses,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_SGA_expenses = [trace_SGA_expenses];
+  var layout_SGA_expenses = {
+    title: 'Selling, General and Administrative (SG&A) Expenses',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('SGA_Expenses_Chart', data_SGA_expenses, layout_SGA_expenses);
+
+  var trace_operating_expenses = {
+    x: x_data,
+    y: y_operating_expenses,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_operating_expenses = [trace_operating_expenses];
+  var layout_operating_expenses = {
+    title: 'Operating Expenses',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('Operating_Expenses_Chart', data_operating_expenses, layout_operating_expenses);
+
+  var trace_operating_income = {
+    x: x_data,
+    y: y_operating_income,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_operating_income = [trace_operating_income];
+  var layout_operating_income = {
+    title: 'Operating Income',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('Operating_Income_Chart', data_operating_income, layout_operating_income);
+
+  var trace_interest_expense = {
+    x: x_data,
+    y: y_interest_expense,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_interest_expense = [trace_interest_expense];
+  var layout_interest_expense = {
+    title: 'Interest Expense',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('Interest_Expense_Chart', data_interest_expense, layout_interest_expense);
+
+  var trace_earnings_before_tax = {
+    x: x_data,
+    y: y_earnings_before_tax,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_earnings_before_tax = [trace_earnings_before_tax];
+  var layout_earnings_before_tax = {
+    title: 'Earnings Before Taxes',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('Earnings_Before_Tax_Chart', data_earnings_before_tax, layout_earnings_before_tax);
   
-  Plotly.newPlot('Revenue_Chart', data, layout);
-  
+  var trace_income_tax_expense = {
+    x: x_data,
+    y: y_income_tax_expense,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_income_tax_expense = [trace_income_tax_expense];
+  var layout_income_tax_expense = {
+    title: 'Income Tax Expenses',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('Income_Tax_Expense_Chart', data_income_tax_expense, layout_income_tax_expense);
+
+  var trace_net_income = {
+    x: x_data,
+    y: y_net_income,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_net_income = [trace_net_income];
+  var layout_net_income = {
+    title: 'Net Income',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('Net_Income_Chart', data_net_income, layout_net_income);
+
+  var trace_eps = {
+    x: x_data,
+    y: y_eps,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_eps = [trace_eps];
+  var layout_eps = {
+    title: 'Earnings per Share',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('EPS_Chart', layout_eps, data_eps);
+
 }
