@@ -446,18 +446,39 @@ function buildIncomeSheetRows(dates, revenue, cost_of_revenue, gross_profit, res
 
 function getCashFlowData(stock) {
 
-  var queryUrl = `https://financialmodelingprep.com/api/v3/financials/income-statement/${stock}`;
+  var queryUrl = `https://financialmodelingprep.com/api/v3/financials/cash-flow-statement/${stock}`;
   d3.json(queryUrl).then(function(data) {
     var financial_data = data['financials'];
     var dates = financial_data.map(row => row['date']).reverse();
     console.log(dates);
-    var revenue = financial_data.map(row => row['Revenue']).reverse();
-    console.log(revenue);
-    var gross_profit = financial_data.map(row => row['Gross Profit']).reverse();
-    console.log(gross_profit);
+    var depreciation_amortization = financial_data.map(row => row['Depreciation & Amortization']).reverse();
+    console.log(depreciation_amortization);
+    var stock_based_compensation = financial_data.map(row => row['Stock-based compensation']).reverse();
+    console.log(stock_based_compensation);
+    var operating_cash_flow = financial_data.map(row => row['Operating Cash Flow']).reverse();
+    console.log(operating_cash_flow);
+    var capital_expenditures = financial_data.map(row => row['Capital Expenditure']).reverse();
+    console.log(capital_expenditures);
+    var acquisitions = financial_data.map(row => row['Acquisitions and disposals']).reverse();
+    console.log(acquisitions);
+    var investment_purchases = financial_data.map(row => row['Investment purchases and sales']).reverse();
+    console.log(investment_purchases);
+    var investment_cash_flow = financial_data.map(row => row['Investing Cash flow']).reverse();
+    console.log(investment_cash_flow);
+    var net_debt = financial_data.map(row => row['Issuance (repayment) of debt']).reverse();
+    console.log(net_debt);
+    var share_repurchases = financial_data.map(row => row['Issuance (buybacks) of shares']).reverse();
+    console.log(share_repurchases);
+    var dividends = financial_data.map(row => row['Dividend payments']).reverse();
+    console.log(dividends);
+    var financing_cash_flow = financial_data.map(row => row['Financing Cash Flow']).reverse();
+    console.log(financing_cash_flow);
+    var free_cash_flow = financial_data.map(row => row['Free Cash Flow']).reverse();
+    console.log(free_cash_flow);
     console.log(data);
     buildCashFlowHeaders(dates);
-    buildCashFlowRows(dates, revenue, gross_profit);
+    buildCashFlowRows(dates, depreciation_amortization, stock_based_compensation,operating_cash_flow,capital_expenditures,acquisitions,investment_purchases,investment_cash_flow,net_debt,share_repurchases,dividends,financing_cash_flow,free_cash_flow);
+    build_Cash_Flow_Plots(dates, depreciation_amortization, stock_based_compensation,operating_cash_flow,capital_expenditures,acquisitions,investment_purchases,investment_cash_flow,net_debt,share_repurchases,dividends,financing_cash_flow,free_cash_flow);
   });
 }
 
@@ -472,22 +493,82 @@ function buildCashFlowHeaders(dates) {
     trow.append('th').text(formatYear(dates[i]));
   }
 }
-function buildCashFlowRows(dates, revenue, gross_profit) {
+function buildCashFlowRows(dates, depreciation_amortization, stock_based_compensation,operating_cash_flow,capital_expenditures,acquisitions,investment_purchases,investment_cash_flow,net_debt,share_repurchases,dividends,financing_cash_flow,free_cash_flow) {
   var date_length = dates.length
   var table = d3.select("#Cash-Flow");
   var tbody = table.select("tbody");
   tbody.node().innerHTML = "";
-  var trevenue;
-  trevenue = tbody.append('tr');
-  trevenue.append('td').text("Revenue")
+  var tdepreciation;
+  tdepreciation = tbody.append('tr');
+  tdepreciation.append('td').text("Depreciation & Amortization")
   for (var i = 8; i < date_length; i++) {
-    trevenue.append('td').text(formatNumber(revenue[i]))
+    tdepreciation.append('td').text(formatNumber(depreciation_amortization[i]))
   }
-  var tgross_profit;
-  tgross_profit = tbody.append('tr');
-  tgross_profit.append('td').text("Gross Profit")
+  var tstockcompensation;
+  tstockcompensation = tbody.append('tr');
+  tstockcompensation.append('td').text("Stock-based Compensation")
   for (var i = 8; i < date_length; i++) {
-    tgross_profit.append('td').text(formatNumber(gross_profit[i]))
+    tstockcompensation.append('td').text(formatNumber(stock_based_compensation[i]))
+  }
+  var toperatingcashflow;
+  toperatingcashflow = tbody.append('tr');
+  toperatingcashflow.append('td').text("Operating Cash Flow")
+  for (var i = 8; i < date_length; i++) {
+    toperatingcashflow.append('td').text(formatNumber(operating_cash_flow[i]))
+  }
+  var tcapitalexpenditures;
+  tcapitalexpenditures = tbody.append('tr');
+  tcapitalexpenditures.append('td').text("Capital Expenditures")
+  for (var i = 8; i < date_length; i++) {
+    tcapitalexpenditures.append('td').text(formatNumber(capital_expenditures[i]))
+  }
+  var tacquisition;
+  tacquisition = tbody.append('tr');
+  tacquisition.append('td').text("Acquisitions and Disposals")
+  for (var i = 8; i < date_length; i++) {
+    tacquisition.append('td').text(formatNumber(acquisitions[i]))
+  }
+  var tinvestmentpurchases;
+  tinvestmentpurchases = tbody.append('tr');
+  tinvestmentpurchases.append('td').text("Investment Purchases and Sales")
+  for (var i = 8; i < date_length; i++) {
+    tinvestmentpurchases.append('td').text(formatNumber(investment_purchases[i]))
+  }
+  var tinvestmentcashflow;
+  tinvestmentcashflow = tbody.append('tr');
+  tinvestmentcashflow.append('td').text("Investing Cash flow")
+  for (var i = 8; i < date_length; i++) {
+    tinvestmentcashflow.append('td').text(formatNumber(investment_cash_flow[i]))
+  }
+  var tnetdebt;
+  tnetdebt = tbody.append('tr');
+  tnetdebt.append('td').text("Issuance (Repayment) of Debt")
+  for (var i = 8; i < date_length; i++) {
+    tnetdebt.append('td').text(formatNumber(net_debt[i]))
+  }
+  var tsharerepurchases;
+  tsharerepurchases = tbody.append('tr');
+  tsharerepurchases.append('td').text("Issuance (Buybacks) of Shares")
+  for (var i = 8; i < date_length; i++) {
+    tsharerepurchases.append('td').text(formatNumber(share_repurchases[i]))
+  }
+  var tdividends;
+  tdividends = tbody.append('tr');
+  tdividends.append('td').text("Dividend Payments")
+  for (var i = 8; i < date_length; i++) {
+    tdividends.append('td').text(formatNumber(dividends[i]))
+  }
+  var tfinancingcashflow;
+  tfinancingcashflow = tbody.append('tr');
+  tfinancingcashflow.append('td').text("Financing Cash Flow")
+  for (var i = 8; i < date_length; i++) {
+    tfinancingcashflow.append('td').text(formatNumber(financing_cash_flow[i]))
+  }
+  var tfreecashflow;
+  tfreecashflow = tbody.append('tr');
+  tfreecashflow.append('td').text("Free Cash Flow")
+  for (var i = 8; i < date_length; i++) {
+    tfreecashflow.append('td').text(formatNumber(free_cash_flow[i]))
   }
 }
 
@@ -907,5 +988,376 @@ function build_Income_Statement_Plots(dates, revenue, cost_of_revenue, gross_pro
     bargap :0.05
   };
   Plotly.newPlot('EPS_Chart', layout_eps, data_eps);
+
+}
+
+function build_Cash_Flow_Plots(dates, depreciation_amortization, stock_based_compensation,operating_cash_flow,capital_expenditures,acquisitions,investment_purchases,investment_cash_flow,net_debt,share_repurchases,dividends,financing_cash_flow,free_cash_flow) {
+  var date_length = dates.length
+  var x_data = [];
+  var y_depreciation_amortization = [];
+  var y_stock_based_compensation = [];
+  var y_operating_cash_flow = [];
+  var y_capital_expenditures = [];
+  var y_acquisitions = [];
+  var y_investment_purchases = [];
+  var y_investment_cash_flow = [];
+  var y_net_debt = [];
+  var y_share_repurchases = [];
+  var y_dividends = [];
+  var y_financing_cash_flow = [];
+  var y_free_cash_flow = [];
+
+
+  for (var i = 3; i < date_length; i++) {
+    x_data.push(formatYear(dates[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_depreciation_amortization.push(formatNumber(depreciation_amortization[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_stock_based_compensation.push(formatNumber(stock_based_compensation[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_operating_cash_flow.push(formatNumber(operating_cash_flow[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_capital_expenditures.push(formatNumber(capital_expenditures[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_acquisitions.push(formatNumber(acquisitions[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_investment_purchases.push(formatNumber(investment_purchases[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_investment_cash_flow.push(formatNumber(investment_cash_flow[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_net_debt.push(formatNumber(net_debt[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_share_repurchases.push(formatNumber(share_repurchases[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_dividends.push(formatNumber(dividends[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_financing_cash_flow.push(formatNumber(financing_cash_flow[i]))
+  }
+  for (var i = 3; i < date_length; i++) {
+    y_free_cash_flow.push(free_cash_flow[i])
+  }
+
+  var trace_depreciation_amortization = {
+    x: x_data,
+    y: y_depreciation_amortization,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_depreciation_amortization = [trace_depreciation_amortization];
+  var layout_depreciation_amortization = {
+    title: 'Depreciation & Amortization',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('DepreciationAmortization_Chart', data_depreciation_amortization, layout_depreciation_amortization);
+
+  var trace_stock_based_compensation = {
+    x: x_data,
+    y: y_stock_based_compensation,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_stock_based_compensation = [trace_stock_based_compensation];
+  var layout_stock_based_compensation = {
+    title: 'Stock-based Compensation',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('StockbasedCompensation_Chart', data_stock_based_compensation, layout_stock_based_compensation);
+
+  var trace_operating_cash_flow = {
+    x: x_data,
+    y: y_operating_cash_flow,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_operating_cash_flow = [trace_operating_cash_flow];
+  var layout_operating_cash_flow = {
+    title: 'Operating Cash Flow',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('OperatingCashFlow_Chart', data_operating_cash_flow, layout_operating_cash_flow);
+
+  var trace_capital_expenditures = {
+    x: x_data,
+    y: y_capital_expenditures,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_capital_expenditures = [trace_capital_expenditures];
+  var layout_capital_expenditures = {
+    title: 'Capital Expenditures',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('CapitalExpenditures_Chart', data_capital_expenditures, layout_capital_expenditures);
+
+  var trace_acquisitions = {
+    x: x_data,
+    y: y_acquisitions,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_acquisitions = [trace_acquisitions];
+  var layout_acquisitions = {
+    title: 'Acquisitions and Disposals',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('AcquisitionsDisposals_Chart', data_acquisitions, layout_acquisitions);
+
+  var trace_investment_purchases = {
+    x: x_data,
+    y: y_investment_purchases,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_investment_purchases = [trace_investment_purchases];
+  var layout_investment_purchases = {
+    title: 'Investment Purchases and Sales',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('InvestmentPurchasesSales_Chart', data_investment_purchases, layout_investment_purchases);
+
+  var trace_investment_cash_flow = {
+    x: x_data,
+    y: y_investment_cash_flow,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_investment_cash_flow = [trace_investment_cash_flow];
+  var layout_investment_cash_flow = {
+    title: 'Investing Cash Flow',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('InvestingCashFlow_Chart', data_investment_cash_flow, layout_investment_cash_flow);
+
+  var trace_net_debt = {
+    x: x_data,
+    y: y_net_debt,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_net_debt = [trace_net_debt];
+  var layout_net_debt = {
+    title: 'Issuance (Repayment) of Debt',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('NetDebt_Chart', data_net_debt, layout_net_debt);
+
+  var trace_share_repurchases = {
+    x: x_data,
+    y: y_share_repurchases,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_share_repurchases = [trace_share_repurchases];
+  var layout_share_repurchases = {
+    title: 'Issuance (Buybacks) of Shares',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('ShareRepurchases_Chart', data_share_repurchases, layout_share_repurchases);
+  
+  var trace_dividends = {
+    x: x_data,
+    y: y_dividends,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_dividends = [trace_dividends];
+  var layout_dividends = {
+    title: 'Dividend Payments',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('Dividends_Chart', data_dividends, layout_dividends);
+
+  var trace_financing_cash_flow = {
+    x: x_data,
+    y: y_financing_cash_flow,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_financing_cash_flow = [trace_financing_cash_flow];
+  var layout_financing_cash_flow = {
+    title: 'Financing Cash Flow',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('FinancingCashFlow_Chart', data_financing_cash_flow, layout_financing_cash_flow);
+
+  var trace_free_cash_flow = {
+    x: x_data,
+    y: y_free_cash_flow,
+    type: 'bar',
+    marker: {
+      color: 'rgb(142,124,195)'
+    }
+  };
+  var data_free_cash_flow = [trace_free_cash_flow];
+  var layout_free_cash_flow = {
+    title: 'Free Cash Flow',
+    font:{
+      family: 'Raleway, sans-serif'
+    },
+    showlegend: false,
+    xaxis: {
+      tickangle: 0
+    },
+    yaxis: {
+      zeroline: false,
+      gridwidth: 2
+    },
+    bargap :0.05
+  };
+  Plotly.newPlot('FreeCashFlow_Chart', data_free_cash_flow, layout_free_cash_flow);
 
 }
