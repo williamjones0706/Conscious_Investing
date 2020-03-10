@@ -25,32 +25,32 @@ from flask_sqlalchemy import SQLAlchemy
 # for the environment variables 
 IS_HEROKU = False
 
-if('IS_HEROKU' in os.environ):
-    IS_HEROKU = True
+# if('IS_HEROKU' in os.environ):
+#     IS_HEROKU = True
 
-if (IS_HEROKU):
-    remote_esg_host = os.environ['remote_esg_host']
-    remote_db_port = os.environ['remote_db_port']
-    remote_esg_dbname = os.environ['remote_esg_dbname']
-    remote_esg_dbuser = os.environ['remote_esg_dbuser']
-    remote_esg_dbpwd = os.environ['remote_esg_dbpwd']
-    API_key = os.environ['mapboxkey']
-else:
-    from config import remote_esg_host, remote_db_port, remote_esg_dbname, remote_esg_dbuser, remote_esg_dbpwd 
+# if (IS_HEROKU):
+#     remote_esg_host = os.environ['remote_esg_host']
+#     remote_db_port = os.environ['remote_db_port']
+#     remote_esg_dbname = os.environ['remote_esg_dbname']
+#     remote_esg_dbuser = os.environ['remote_esg_dbuser']
+#     remote_esg_dbpwd = os.environ['remote_esg_dbpwd']
+#     API_key = os.environ['mapboxkey']
+# else:
+#     from config import remote_esg_host, remote_db_port, remote_esg_dbname, remote_esg_dbuser, remote_esg_dbpwd 
 
-engine = create_engine(f"postgres://{remote_esg_dbuser}:{remote_esg_dbpwd}@{remote_esg_host}:{remote_db_port}/{remote_esg_dbname}")
-conn = engine.connect()
+# engine = create_engine(f"postgres://{remote_esg_dbuser}:{remote_esg_dbpwd}@{remote_esg_host}:{remote_db_port}/{remote_esg_dbname}")
+# conn = engine.connect()
 
 # Initialize Flask application
 app = Flask(__name__)
 
-# Set up SQL Alchemy connection and classes
-Base = automap_base() # Declare a Base using `automap_base()`
-Base.prepare(engine, reflect=True) # Use the Base class to reflect the database tables
-Base.classes.keys() # Print all of the classes mapped to the Base
-# ClientInfo = Base.classes.client_info # Assign the client_info class (table) to a variable called `ClientInfo`
-session = Session(engine) # Create a session
-print(Base.classes.keys())
+# # Set up SQL Alchemy connection and classes
+# Base = automap_base() # Declare a Base using `automap_base()`
+# Base.prepare(engine, reflect=True) # Use the Base class to reflect the database tables
+# Base.classes.keys() # Print all of the classes mapped to the Base
+# # ClientInfo = Base.classes.client_info # Assign the client_info class (table) to a variable called `ClientInfo`
+# session = Session(engine) # Create a session
+# print(Base.classes.keys())
 
 # Develop flask routes for each page and then the routes for the database info to feed the plots in our js files
 
@@ -83,6 +83,12 @@ def esg_breakdown():
 def recommendations():
     """Return the recommendations page."""
     return render_template("recommendations.html")
+
+@app.route('/something',methods=["POST"])
+def get_something():
+    json = request.get_json()
+
+    return jsonify(json)
 
 @app.route("/mapboxkey")
 def mapbox():
