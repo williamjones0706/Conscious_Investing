@@ -1,6 +1,7 @@
 var url = "../static/data/ESG_Database.json";
 
-var API_KEY = fetch('/mapboxkey').then(createMap(response));
+var API_KEY = fetch('/mapboxkey', {credentials:'omit'}).then((response) => {
+  return response.json()}).then((key) => createMap(key));
 
 function createMap(key) {
 
