@@ -44,13 +44,13 @@ conn = engine.connect()
 # Initialize Flask application
 app = Flask(__name__)
 
-# Set up SQL Alchemy connection and classes
-Base = automap_base() # Declare a Base using `automap_base()`
-Base.prepare(engine, reflect=True) # Use the Base class to reflect the database tables
-Base.classes.keys() # Print all of the classes mapped to the Base
-# ClientInfo = Base.classes.client_info # Assign the client_info class (table) to a variable called `ClientInfo`
-session = Session(engine) # Create a session
-print(Base.classes.keys())
+# # Set up SQL Alchemy connection and classes
+# Base = automap_base() # Declare a Base using `automap_base()`
+# Base.prepare(engine, reflect=True) # Use the Base class to reflect the database tables
+# Base.classes.keys() # Print all of the classes mapped to the Base
+# # ClientInfo = Base.classes.client_info # Assign the client_info class (table) to a variable called `ClientInfo`
+# session = Session(engine) # Create a session
+# print(Base.classes.keys())
 
 # Develop flask routes for each page and then the routes for the database info to feed the plots in our js files
 

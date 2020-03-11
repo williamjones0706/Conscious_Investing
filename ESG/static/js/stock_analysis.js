@@ -699,7 +699,9 @@ function build_Income_Statement_Plots(dates, revenue, cost_of_revenue, gross_pro
       zeroline: false,
       gridwidth: 2
     },
-    bargap :0.05
+    bargap :0.05,
+    paper_bgcolor: 'rgb(153, 153, 153)',
+    plot_bgcolor: 'rgb(153, 153, 153)',
   };
   Plotly.newPlot('Revenue_Chart', data_revenue, layout_revenue);
 
