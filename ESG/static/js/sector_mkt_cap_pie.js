@@ -43,7 +43,7 @@ d3.json(url_large).then((lcData) => {
 // Display the default plot
 function init() {
   var data = [{
-    values: all,
+    values: sc,
     labels: all_labels,
     textinfo: "label+percent",
     hole: 0.3,
@@ -70,7 +70,7 @@ d3.selectAll("#selDataset_sector").on("change", getData);
 
 // Function called by DOM changes
 function getData() {
-  var dropdownMenu = d3.select("#selDataset");
+  var dropdownMenu = d3.select("#selDataset_sector");
   // Assign the value of the dropdown menu option to a variable
   var dataset = dropdownMenu.property("value");
   // Initialize an empty array for the data
