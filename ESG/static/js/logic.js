@@ -1,5 +1,9 @@
 var url = "../static/data/ESG_Database.json";
 
+var API_KEY = fetch('/mapboxkey').then(function (response) {
+  return response;
+});
+
 // Create a map object
 d3.json(url).then((data) => {
   var myMap = L.map("map", {
@@ -7,8 +11,8 @@ d3.json(url).then((data) => {
     zoom: 3
   });
 
-  var API_KEY = "/mapboxkey";
-  console.log(API_KEY);
+  // var API_KEY = "/mapboxkey";
+  // console.log(API_KEY);
 
   var tile = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
