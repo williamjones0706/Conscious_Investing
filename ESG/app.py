@@ -3,7 +3,7 @@
 # The OS import is used to connect to the heroku environment to get the environment variables for database connection
 import os
 import json
-
+import io
 # Pandas is required in order to read the sql queries into dataframes for conversion to JSON for plotting
 import pandas as pd
 import numpy as np
@@ -20,6 +20,8 @@ import psycopg2
 # Flask is used to actually deploy our application and render the html files for the webpage views the user sees
 from flask import Flask, jsonify, render_template, url_for, json, request
 from flask_sqlalchemy import SQLAlchemy
+import pickle
+from sklearn.cluster import KMeans
 
 #  In order to work on our project both locally and in the cloud the following code tells it to either use the config file or search heroku
 # for the environment variables 
@@ -43,6 +45,7 @@ IS_HEROKU = False
 
 # Initialize Flask application
 app = Flask(__name__)
+model = pickle.load(open("model.pkl", 'rb'))
 
 # # Set up SQL Alchemy connection and classes
 # Base = automap_base() # Declare a Base using `automap_base()`
@@ -87,8 +90,19 @@ def recommendations():
 @app.route('/something',methods=["POST"])
 def get_something():
     json = request.get_json()
-
-    return jsonify(json)
+    # input_data = pd.DataFrame(json["data"])
+    input_data = [json["data"]['E'],json["data"]['S'],json["data"]['G']]
+    # input_data = json["data"]['S']
+    # input_data.append(json["data"]['E'])
+    # input_data.append(json["data"]['S'])
+    # input_data.append(json["data"]['G'])
+    model_input = np.array(input_data)
+    print(model_input)
+    # with open("model.pkl", 'rb') as file:
+    # model = pickle.load(open("model.pkl", 'rb'))
+    model_output = model.predict(model_input)
+    print(model_output)
+    return jsonify("Still Testing")
 
 @app.route("/mapboxkey")
 def mapbox():

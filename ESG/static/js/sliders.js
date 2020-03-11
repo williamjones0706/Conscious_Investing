@@ -74,11 +74,13 @@ async function handleSubmit(event) {
     const result = await fetch('/something', json);
 
     const something = await result.json();
+
+    console.log(something)
     
-    document.getElementById("TheResult").innerText = something.data.E;
+    document.getElementById("TheResult").innerText = something;
     document.getElementById("TheRecommendations").style.display = 'block';
 
-}
+};
 
 
 
