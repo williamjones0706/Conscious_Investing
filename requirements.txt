@@ -28,3 +28,4 @@ pandas==0.24.2
 numpy==1.16.1
 pickleshare==0.7.5
 scikit-learn==0.21.2
+sklearn==0.0
