@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="../static/css/assets/images/landing-page-image-122x98.png" type="image/x-icon">
     <meta name="description" content="">
 
-    <title>Home</title>
+    <title>Recommendations</title>
     <link rel="stylesheet" href="../static/css/assets/web/assets/mobirise-icons/mobirise-icons.css">
     <link rel="stylesheet" href="../static/css/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/assets/bootstrap/css/bootstrap-grid.min.css">
@@ -21,16 +21,11 @@
     <link rel="stylesheet" href="../static/css/assets/theme/css/style.css">
     <link rel="preload" as="style" href="../static/css/assets/mobirise/css/mbr-additional.css">
     <link rel="stylesheet" href="../static/css/assets/mobirise/css/mbr-additional.css" type="text/css">
-
-
-
+    <link rel="stylesheet" href="../static/css/sliders.css" media="screen">
 </head>
 
 <body>
     <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-0">
-
-
-
         <nav
             class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -65,24 +60,22 @@
                     <li class="nav-item"><a class="nav-link link text-white display-4"
                             href="https://conscious-investing-v2.herokuapp.com/">
                         </a></li>
-                    <li class="nav-item"><a class="nav-link link text-white display-4"
-                            href="https://conscious-investing-v2.herokuapp.com/"><span
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="/"><span
                                 class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>
                             Home</a></li>
-                    <li class="nav-item"><a class="nav-link link text-white display-4"
-                            href="https://conscious-investing-v2.herokuapp.com/recommendations"><span
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="/esg_breakdown"><span
+                                class="mbri-database mbr-iconfont mbr-iconfont-btn"></span>
+                            ESG Breakdown</a></li>
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="/recommendations"><span
                                 class="mbri-touch mbr-iconfont mbr-iconfont-btn"></span>
                             Get Company Recommendations</a></li>
-                    <li class="nav-item"><a class="nav-link link text-white display-4"
-                            href="https://conscious-investing-v2.herokuapp.com/company-search"><span
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="/company_search"><span
                                 class="mbri-search mbr-iconfont mbr-iconfont-btn"></span>
                             Company Search</a></li>
-                    <li class="nav-item"><a class="nav-link link text-white display-4"
-                            href="https://conscious-investing-v2.herokuapp.com/deep-dive"><span
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="/deep_dive"><span
                                 class="mbri-preview mbr-iconfont mbr-iconfont-btn"></span>
                             ESG Deep Dive</a></li>
-                    <li class="nav-item"><a class="nav-link link text-white display-4"
-                            href="https://conscious-investing-v2.herokuapp.com/data-table"><span
+                    <li class="nav-item"><a class="nav-link link text-white display-4" href="/data_table"><span
                                 class="mbri-database mbr-iconfont mbr-iconfont-btn"></span>
                             ESG Data table</a></li>
                 </ul>
@@ -129,10 +122,10 @@
             document.getElementById('govOUT').value = v;
         }
 
-        function handleSubmit(e) {
-            if (e) e.preventDefault();
-            alert(document.getElementById('govOUT').value);
-        }
+        // function handleSubmit(e) {
+        //     if (e) e.preventDefault();
+        //     alert(document.getElementById('govOUT').value);
+        // }
     </script>
 
     <div class="container">
@@ -143,10 +136,17 @@
                         <h5 class="card-title pb-3 mbr-fonts-style display-7">
                             Environment</h5>
                         <p class="mbr-text mbr-fonts-style display-7">How important is it for you to invest in companies
-                            that are actively good stewards for the environment?&nbsp;<br></p>
-                        <input class="slider" id="ENV" type="range" min="1" max="10" step="1" value="10"
-                            oninput="outputUpdate(this.value)">
-                        <output for="ENV" id="envOUT">10</output>
+                            that are actively good stewards for the environment?
+                        </p>
+                        <form>
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">0</span>
+                            <input type="range" name="foo" min="0" max="10" style="width: 250px;" oninput="outputUpdate(this.value)">
+                            <!-- <input class="slider" id="ENV" type="range" min="1" max="10" step="1" value="10"
+                            oninput="outputUpdate(this.value)"> -->
+                            <output for="foo" onforminput="value = foo.valueAsNumber;" id="envOUT"></output>
+                            <!-- <output for="ENV" id="envOUT"></output> -->
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">10</span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -157,10 +157,18 @@
                         <h5 class="card-title pb-3 mbr-fonts-style display-7">
                             Social</h5>
                         <p class="mbr-text mbr-fonts-style display-7">How important is it for you to invest in companies
-                            that treat their employees well and lobby for social justice issues?<br>&nbsp;<br></p>
-                        <input class="slider" id="SOC" type="range" min="1" max="10" step="1" value="10"
-                            oninput="outputUpdate2(this.value)">
-                        <output for="SOC" id="socOUT">10</output>
+                            that treat their employees well and lobby for social justice issues?
+                        </p>
+                        <form>
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">0</span>
+                            <input type="range" name="foo" min="0" max="10" style="width: 250px;" oninput="outputUpdate2(this.value)">
+                            <!-- <input class="slider" id="SOC" type="range" min="1" max="10" step="1" value="10"
+                            oninput="outputUpdate2(this.value)"> -->
+                            <!-- <output for="SOC" id="socOUT">10</output> -->
+                            <output for="foo" onforminput="value = foo.valueAsNumber;" id="socOUT"></output>
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">10</span>
+                        </form>
+                       
                     </div>
                 </div>
             </div>
@@ -170,12 +178,18 @@
                     <div class="card-box">
                         <h5 class="card-title pb-3 mbr-fonts-style display-7">
                             Governance</h5>
-                        <p class="mbr-text mbr-fonts-style display-7">How important is it for you to invest in well-run
+                        <p class="mbr-text mbr-fonts-style display-7">How important is it for you to invest in 
                             companies whose corporate incentives align with the business’ success?
                         </p>
-                        <input class="slider" id="GOV" type="range" min="1" max="10" step="1" value="10"
+                        <form>
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">0</span>
+                            <input type="range" name="foo" min="0" max="10" style="width: 250px;" oninput="outputUpdate3(this.value)">
+                            <!-- <input class="slider" id="GOV" type="range" min="1" max="10" step="1" value="10"
                             oninput="outputUpdate3(this.value)">
-                        <output for="GOV" id="govOUT">10</output>
+                            <output for="GOV" id="govOUT">10</output> -->
+                            <output for="foo" onforminput="value = foo.valueAsNumber;" id="govOUT"></output>
+                            <span class="font-weight-bold indigo-text ml-2 mt-1">10</span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -187,11 +201,36 @@
             <div class="col-md-10 align-center">
                 <div class="col-justify-content-md-center">
                     <div class="mbr-section-btn"><a class="btn btn-md btn-black-outline display-4" href="#"
-                            onclick="handleSubmit(event);">SUBMIT</a></div>
+                            onclick="handleSubmit(event)">SUBMIT</a></div>
                 </div>
             </div>
         </div>
+
+        <div id="TheRecommendations" style="display: none;">
+            <h1>Your fabulous findings go here!</h1>
+            <span id="TheResult"></span>
+        </div>
     </div>
+
+<!-- footer -->
+<section class="cid-rRKL8sFNbA" id="footer1-y">
+    <div class="row">
+        <div class="media-wrap">
+            <a href="https://conscious-investing-v2.herokuapp.com/">
+                <img src="../static/css/assets/images/landing-page-image-1-192x155.png" alt="Mobirise" title="">
+            </a>
+        </div>
+        <div>
+
+            <p class="mbr-text"><a href="https://github.com/williamjones0706/Councious_Investing">Github
+                </a></p>
+            </a></p>
+            <p class="mbr-text" style="color:azure">
+                © Copyright 2019 Mobirise - All Rights Reserved
+            </p>
+        </div>
+    </div>
+</section>
 
 
 
@@ -204,8 +243,9 @@
     <script src="../static/css/assets/dropdown/js/navbar-dropdown.js"></script>
     <script src="../static/css/assets/touchswipe/jquery.touch-swipe.min.js"></script>
     <script src="../static/css/assets/theme/js/script.js"></script>
-
+    
 
 </body>
+<script src="../static/js/sliders.js"></script>
 
 </html>
