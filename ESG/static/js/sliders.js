@@ -71,14 +71,17 @@ async function handleSubmit(event) {
             })
     }
     console.log(json);
-    const result = await fetch('/something', json);
+    const result = await fetch('/output', json);
 
-    const something = await result.json();
+    const result_json = await result.json();
+    model_results = JSON.parse(result_json)
+    model_group = model_results.Result.Output
+    console.log(model_group)
     
-    document.getElementById("TheResult").innerText = something.data.E;
+    document.getElementById("TheResult").innerText = model_group;
     document.getElementById("TheRecommendations").style.display = 'block';
 
-}
+};
 
 
 
