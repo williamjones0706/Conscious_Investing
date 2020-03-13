@@ -376,7 +376,8 @@ nav .mbr-section-btn {
   -webkit-align-items: center;
   min-height: 100vh;
   padding-top: 3rem;
-  padding-bottom: 3rem; }
+  padding-bottom: 3rem;
+  margin-top: 2rem; }
 
 /*! Map */
 .map {
