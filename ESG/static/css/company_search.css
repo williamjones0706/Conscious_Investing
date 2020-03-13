@@ -47,3 +47,17 @@
     margin-top: -1px;
   }
   form { position: relative; margin: 50px; width: 1200px; } */
+  .carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+}
