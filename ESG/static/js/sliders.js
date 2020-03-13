@@ -86,8 +86,8 @@ async function handleSubmit(event) {
 function showOutput(model_group) {
     console.log(model_group)
     if (model_group == 0) {
-        file_path = "../static/data/group0.json";
-        d3.json("../static/data/group0.json").then(function(data) {
+        file_path = "../static/group0.json";
+        d3.json("../static/group0.json").then(function(data) {
             console.log(data);
             var table = d3.select("#Recommendations-Output");
             var tbody = table.select("tbody");
@@ -102,8 +102,8 @@ function showOutput(model_group) {
             }
         });
       } else if (model_group == 1) {
-        file_path = "../static/data/group1.json";
-        d3.json("../static/data/group1.json").then(function(data) {
+        file_path = "../static/group1.json";
+        d3.json("../static/group1.json").then(function(data) {
             console.log(data);
             var table = d3.select("#Recommendations-Output");
             var tbody = table.select("tbody");
@@ -118,8 +118,8 @@ function showOutput(model_group) {
             }
         });
       } else if (model_group == 2) {
-        file_path = "../static/data/group2.json";
-        d3.json("../static/data/group2.json").then(function(data) {
+        file_path = "../static/group2.json";
+        d3.json("../static/group2.json").then(function(data) {
             console.log(data);
             var table = d3.select("#Recommendations-Output");
             var tbody = table.select("tbody");
@@ -134,8 +134,8 @@ function showOutput(model_group) {
             }
         });
       } else if (model_group == 3) {
-        file_path = "../static/data/group3.json";
-        d3.json("../static/data/group3.json").then(function(data) {
+        file_path = "../static/group3.json";
+        d3.json("../static/group3.json").then(function(data) {
             console.log(data);
             var table = d3.select("#Recommendations-Output");
             var tbody = table.select("tbody");
@@ -150,8 +150,8 @@ function showOutput(model_group) {
             }
         });
       } else if (model_group == 4) {
-        file_path = "../static/data/group4.json";
-        d3.json("../static/data/group4.json").then(function(data) {
+        file_path = "../static/group4.json";
+        d3.json("../static/group4.json").then(function(data) {
             console.log(data);
             var table = d3.select("#Recommendations-Output");
             var tbody = table.select("tbody");
@@ -166,8 +166,8 @@ function showOutput(model_group) {
             }
         });
       } else if (model_group == 5) {
-        file_path = "../static/data/group5.json";
-        d3.json("../static/data/group5.json").then(function(data) {
+        file_path = "../static/group5.json";
+        d3.json("../static/group5.json").then(function(data) {
             console.log(data);
             var table = d3.select("#Recommendations-Output");
             var tbody = table.select("tbody");
@@ -182,8 +182,8 @@ function showOutput(model_group) {
             }
         });
       } else if (model_group == 6) {
-        file_path = "../static/data/group6.json";
-        d3.json("../static/data/group6.json").then(function(data) {
+        file_path = "../static/group6.json";
+        d3.json("../static/group6.json").then(function(data) {
             console.log(data);
             var table = d3.select("#Recommendations-Output");
             var tbody = table.select("tbody");
@@ -198,8 +198,8 @@ function showOutput(model_group) {
             }
         });
       } else if (model_group == 7) {
-        file_path = "../static/data/group7.json";
-        d3.json("../static/data/group7.json").then(function(data) {
+        file_path = "../static/group7.json";
+        d3.json("../static/group7.json").then(function(data) {
             console.log(data);
             console.log(data.length)
             var table = d3.select("#Recommendations-Output");
