@@ -78,11 +78,163 @@ async function handleSubmit(event) {
     model_group = model_results.Result.Output
     console.log(model_group)
     
-    document.getElementById("TheResult").innerText = model_group;
-    document.getElementById("TheRecommendations").style.display = 'block';
+    showOutput(model_group)
+    
 
 };
 
+function showOutput(model_group) {
+    console.log(model_group)
+    if (model_group == 0) {
+        file_path = "../static/data/group0.json";
+        d3.json("../static/data/group0.json").then(function(data) {
+            console.log(data);
+            var table = d3.select("#Recommendations-Output");
+            var tbody = table.select("tbody");
+            tbody.node().innerHTML = "";
+            for(var i=0; i<data.length; i++) {
+                console.log(data[i].Ticker);
+                var trow;
+                trow = tbody.append("tr");          
+                trow.append("td").text(data[i].Ticker);
+                trow.append("td").text(data[i].Company);
+                trow.append("td").text(data[i].RoR);
+            }
+        });
+      } else if (model_group == 1) {
+        file_path = "../static/data/group1.json";
+        d3.json("../static/data/group1.json").then(function(data) {
+            console.log(data);
+            var table = d3.select("#Recommendations-Output");
+            var tbody = table.select("tbody");
+            tbody.node().innerHTML = "";
+            for(var i=0; i<data.length; i++) {
+                console.log(data[i].Ticker);
+                var trow;
+                trow = tbody.append("tr");          
+                trow.append("td").text(data[i].Ticker);
+                trow.append("td").text(data[i].Company);
+                trow.append("td").text(data[i].RoR);
+            }
+        });
+      } else if (model_group == 2) {
+        file_path = "../static/data/group2.json";
+        d3.json("../static/data/group2.json").then(function(data) {
+            console.log(data);
+            var table = d3.select("#Recommendations-Output");
+            var tbody = table.select("tbody");
+            tbody.node().innerHTML = "";
+            for(var i=0; i<data.length; i++) {
+                console.log(data[i].Ticker);
+                var trow;
+                trow = tbody.append("tr");          
+                trow.append("td").text(data[i].Ticker);
+                trow.append("td").text(data[i].Company);
+                trow.append("td").text(data[i].RoR);
+            }
+        });
+      } else if (model_group == 3) {
+        file_path = "../static/data/group3.json";
+        d3.json("../static/data/group3.json").then(function(data) {
+            console.log(data);
+            var table = d3.select("#Recommendations-Output");
+            var tbody = table.select("tbody");
+            tbody.node().innerHTML = "";
+            for(var i=0; i<data.length; i++) {
+                console.log(data[i].Ticker);
+                var trow;
+                trow = tbody.append("tr");          
+                trow.append("td").text(data[i].Ticker);
+                trow.append("td").text(data[i].Company);
+                trow.append("td").text(data[i].RoR);
+            }
+        });
+      } else if (model_group == 4) {
+        file_path = "../static/data/group4.json";
+        d3.json("../static/data/group4.json").then(function(data) {
+            console.log(data);
+            var table = d3.select("#Recommendations-Output");
+            var tbody = table.select("tbody");
+            tbody.node().innerHTML = "";
+            for(var i=0; i<data.length; i++) {
+                console.log(data[i].Ticker);
+                var trow;
+                trow = tbody.append("tr");          
+                trow.append("td").text(data[i].Ticker);
+                trow.append("td").text(data[i].Company);
+                trow.append("td").text(data[i].RoR);
+            }
+        });
+      } else if (model_group == 5) {
+        file_path = "../static/data/group5.json";
+        d3.json("../static/data/group5.json").then(function(data) {
+            console.log(data);
+            var table = d3.select("#Recommendations-Output");
+            var tbody = table.select("tbody");
+            tbody.node().innerHTML = "";
+            for(var i=0; i<data.length; i++) {
+                console.log(data[i].Ticker);
+                var trow;
+                trow = tbody.append("tr");          
+                trow.append("td").text(data[i].Ticker);
+                trow.append("td").text(data[i].Company);
+                trow.append("td").text(data[i].RoR);
+            }
+        });
+      } else if (model_group == 6) {
+        file_path = "../static/data/group6.json";
+        d3.json("../static/data/group6.json").then(function(data) {
+            console.log(data);
+            var table = d3.select("#Recommendations-Output");
+            var tbody = table.select("tbody");
+            tbody.node().innerHTML = "";
+            for(var i=0; i<data.length; i++) {
+                console.log(data[i].Ticker);
+                var trow;
+                trow = tbody.append("tr");          
+                trow.append("td").text(data[i].Ticker);
+                trow.append("td").text(data[i].Company);
+                trow.append("td").text(data[i].RoR);
+            }
+        });
+      } else if (model_group == 7) {
+        file_path = "../static/data/group7.json";
+        d3.json("../static/data/group7.json").then(function(data) {
+            console.log(data);
+            console.log(data.length)
+            var table = d3.select("#Recommendations-Output");
+            var tbody = table.select("tbody");
+            tbody.node().innerHTML = "";
+            for(var i=0; i<data.length; i++) {
+                console.log(data[i].Ticker);
+                var trow;
+                trow = tbody.append("tr");          
+                trow.append("td").text(data[i].Ticker);
+                trow.append("td").text(data[i].Company);
+                trow.append("td").text(data[i].RoR);
+            }
+        });
+      } 
+    console.log(file_path)
+    document.getElementById("TheRecommendations").style.display = 'block';  
+    // d3.json(file_path).then(function(data) {
+    //     console.log(data);
+    //     var table = d3.select("#Recommendations-Output");
+    //     var tbody = table.select("tbody");
+    //     tbody.node().innerHTML = "";
+    //     for(var i=0; i<data.length; i++) {
+    //         console.log(data[i].Ticker);
+    //         var trow;
+    //         trow = tbody.append("tr");          
+    //         trow.append("td").text(data[i].Ticker);
+    //         trow.append("td").text(data[i].Company);
+    //         trow.append("td").text(data[i].RoR);
+    //     }
+    // })
+
+    // document.getElementById("TheResult").innerText = model_group;
+    
+}
 
 
 modifyInputs();
