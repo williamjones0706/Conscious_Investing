@@ -73,6 +73,11 @@ def data_table():
     """Return the data table."""
     return render_template("data_table.html")
 
+@app.route("/table_iframe")
+def data_iframe():
+    """Return the table iframe."""
+    return render_template("table.html")
+
 @app.route("/deep_dive")
 def deep_dive():
     """Return the deep_dive info for industry/sector/funnel,etc."""
