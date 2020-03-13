@@ -20,7 +20,7 @@ function handleSubmit() {
   // build_gauge_G(stock);
   getIncomeStatementData(stock)
   getCashFlowData(stock)
-  getBalanceSheetData(stock)
+  // getBalanceSheetData(stock)
   buildGetESGscores(stock)
 }
 
@@ -572,52 +572,52 @@ function buildCashFlowRows(dates, depreciation_amortization, stock_based_compens
   }
 }
 
-function getBalanceSheetData(stock) {
+// function getBalanceSheetData(stock) {
 
-  var queryUrl = `https://financialmodelingprep.com/api/v3/financials/income-statement/${stock}`;
-  d3.json(queryUrl).then(function(data) {
-    var financial_data = data['financials'];
-    var dates = financial_data.map(row => row['date']).reverse();
-    console.log(dates);
-    var revenue = financial_data.map(row => row['Revenue']).reverse();
-    console.log(revenue);
-    var gross_profit = financial_data.map(row => row['Gross Profit']).reverse();
-    console.log(gross_profit);
-    console.log(data);
-    buildBalanceSheetHeaders(dates);
-    buildBalanceSheetRows(dates, revenue, gross_profit);
-  });
-}
+//   var queryUrl = `https://financialmodelingprep.com/api/v3/financials/income-statement/${stock}`;
+//   d3.json(queryUrl).then(function(data) {
+//     var financial_data = data['financials'];
+//     var dates = financial_data.map(row => row['date']).reverse();
+//     console.log(dates);
+//     var revenue = financial_data.map(row => row['Revenue']).reverse();
+//     console.log(revenue);
+//     var gross_profit = financial_data.map(row => row['Gross Profit']).reverse();
+//     console.log(gross_profit);
+//     console.log(data);
+//     buildBalanceSheetHeaders(dates);
+//     buildBalanceSheetRows(dates, revenue, gross_profit);
+//   });
+// }
 
-function buildBalanceSheetHeaders(dates) {
-  var date_length = dates.length
-  var table = d3.select("#Balance-Sheet");
-  var thead = table.select("thead");
-  var trow = thead.select('tr');
-  trow.node().innerHTML = "";
-  trow.append('th').text("Balance Sheet");
-  for (var i = 8; i < date_length; i++) {
-    trow.append('th').text(formatYear(dates[i]));
-  }
-}
-function buildBalanceSheetRows(dates, revenue, gross_profit) {
-  var date_length = dates.length
-  var table = d3.select("#Balance-Sheet");
-  var tbody = table.select("tbody");
-  tbody.node().innerHTML = "";
-  var trevenue;
-  trevenue = tbody.append('tr');
-  trevenue.append('td').text("Revenue")
-  for (var i = 8; i < date_length; i++) {
-    trevenue.append('td').text(formatNumber(revenue[i]))
-  }
-  var tgross_profit;
-  tgross_profit = tbody.append('tr');
-  tgross_profit.append('td').text("Gross Profit")
-  for (var i = 8; i < date_length; i++) {
-    tgross_profit.append('td').text(formatNumber(gross_profit[i]))
-  }
-}
+// function buildBalanceSheetHeaders(dates) {
+//   var date_length = dates.length
+//   var table = d3.select("#Balance-Sheet");
+//   var thead = table.select("thead");
+//   var trow = thead.select('tr');
+//   trow.node().innerHTML = "";
+//   trow.append('th').text("Balance Sheet");
+//   for (var i = 8; i < date_length; i++) {
+//     trow.append('th').text(formatYear(dates[i]));
+//   }
+// }
+// function buildBalanceSheetRows(dates, revenue, gross_profit) {
+//   var date_length = dates.length
+//   var table = d3.select("#Balance-Sheet");
+//   var tbody = table.select("tbody");
+//   tbody.node().innerHTML = "";
+//   var trevenue;
+//   trevenue = tbody.append('tr');
+//   trevenue.append('td').text("Revenue")
+//   for (var i = 8; i < date_length; i++) {
+//     trevenue.append('td').text(formatNumber(revenue[i]))
+//   }
+//   var tgross_profit;
+//   tgross_profit = tbody.append('tr');
+//   tgross_profit.append('td').text("Gross Profit")
+//   for (var i = 8; i < date_length; i++) {
+//     tgross_profit.append('td').text(formatNumber(gross_profit[i]))
+//   }
+// }
 
 
 function build_Income_Statement_Plots(dates, revenue, cost_of_revenue, gross_profit, research_expenses, SGA_expenses,operating_expenses,operating_income,interest_expense,earnings_before_tax,income_tax_expense,net_income,eps) {
