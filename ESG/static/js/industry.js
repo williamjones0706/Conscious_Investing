@@ -83,215 +83,215 @@ build_industrytop10_plot();
 // ----------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------
 
-function build_Environment_industrytop10_plot() {
+// function build_Environment_industrytop10_plot() {
 
-    // var url = "/api/esg";
+//     // var url = "/api/esg";
 
-    d3.json("../static/data/E_Industry10_Table.json").then((data) => {
-        // log the data in order to visualize it
-        console.log(data);
+//     d3.json("../static/data/E_Industry10_Table.json").then((data) => {
+//         // log the data in order to visualize it
+//         console.log(data);
 
-        // convert json to array of objects
-        var industries_top_10_E = Object.values(data.Industry).reverse();
-        console.log(industries_top_10_E);
+//         // convert json to array of objects
+//         var industries_top_10_E = Object.values(data.Industry).reverse();
+//         console.log(industries_top_10_E);
 
-        var industries_top_10_EScores = Object.values(data["Environment Risk Score"]).reverse();
-        console.log(industries_top_10_EScores);
+//         var industries_top_10_EScores = Object.values(data["Environment Risk Score"]).reverse();
+//         console.log(industries_top_10_EScores);
 
-        // create the trace variable for the bar plot
-        var labels = industries_top_10_E;
+//         // create the trace variable for the bar plot
+//         var labels = industries_top_10_E;
 
-        var industrytop10_E_trace = {
-            x: industries_top_10_EScores,
-            y: industries_top_10_E,
-            text: labels,
-            opacity: 0.8,
-            marker: {
-                color: 'rgb(0,76,150)',
-                line: {
-                    color: 'rgb(0,0,102)',
-                    width: 1.5
-                }
-            },
-            type: "bar",
-            orientation: "h",
-        };
+//         var industrytop10_E_trace = {
+//             x: industries_top_10_EScores,
+//             y: industries_top_10_E,
+//             text: labels,
+//             opacity: 0.8,
+//             marker: {
+//                 color: 'rgb(0,76,150)',
+//                 line: {
+//                     color: 'rgb(0,0,102)',
+//                     width: 1.5
+//                 }
+//             },
+//             type: "bar",
+//             orientation: "h",
+//         };
 
-        // create data variable for the industry scores
-        var dataE = [industrytop10_E_trace];
+//         // create data variable for the industry scores
+//         var dataE = [industrytop10_E_trace];
 
-        // create layout variable to set plots layout
-        var layout = {
-            title: "<b>Top 10 Industry AVG Environmental Risk Scores</b><br>(lower scores are better)",
-            yaxis: {
-                tickmode: "linear",
-                showgrid: true,
-                zeroline: true,
-                showline: true,
-                mirror: 'ticks',
-                gridcolor: '#bdbdbd',
-                gridwidth: 2,
-                zerolinecolor: '#969696',
-                zerolinewidth: 4,
-                linecolor: '#636363',
-                linewidth: 6
-            },
-            margin: {
-                l: 210,
-                r: 50,
-                t: 100,
-                b: 50
-            }
-            // automargin: true
-        };
-        // create the bar plot
-        Plotly.newPlot("top10_E_industries_bar", dataE, layout);
-    });
-};
+//         // create layout variable to set plots layout
+//         var layout = {
+//             title: "<b>Top 10 Industry AVG Environmental Risk Scores</b><br>(lower scores are better)",
+//             yaxis: {
+//                 tickmode: "linear",
+//                 showgrid: true,
+//                 zeroline: true,
+//                 showline: true,
+//                 mirror: 'ticks',
+//                 gridcolor: '#bdbdbd',
+//                 gridwidth: 2,
+//                 zerolinecolor: '#969696',
+//                 zerolinewidth: 4,
+//                 linecolor: '#636363',
+//                 linewidth: 6
+//             },
+//             margin: {
+//                 l: 210,
+//                 r: 50,
+//                 t: 100,
+//                 b: 50
+//             }
+//             // automargin: true
+//         };
+//         // create the bar plot
+//         Plotly.newPlot("top10_E_industries_bar", dataE, layout);
+//     });
+// };
 
-build_Environment_industrytop10_plot();
+// build_Environment_industrytop10_plot();
 
-// ----------------------------------------------------------------------------------
-// ----------------------------------------------------------------------------------
+// // ----------------------------------------------------------------------------------
+// // ----------------------------------------------------------------------------------
 
-function build_Social_industrytop10_plot() {
+// function build_Social_industrytop10_plot() {
 
-    // var url = "/api/esg";
+//     // var url = "/api/esg";
 
-    d3.json("../static/data/S_Industry10_Table.json").then((data1) => {
-        // log the data in order to visualize it
-        console.log(data1);
+//     d3.json("../static/data/S_Industry10_Table.json").then((data1) => {
+//         // log the data in order to visualize it
+//         console.log(data1);
 
-        // convert json to array of objects
-        var industries_top_10_S = Object.values(data1.Industry).reverse();
-        console.log(industries_top_10_S);
+//         // convert json to array of objects
+//         var industries_top_10_S = Object.values(data1.Industry).reverse();
+//         console.log(industries_top_10_S);
 
-        var industries_top_10_SScores = Object.values(data1["Social Risk Score"]).reverse();
-        console.log(industries_top_10_SScores);
+//         var industries_top_10_SScores = Object.values(data1["Social Risk Score"]).reverse();
+//         console.log(industries_top_10_SScores);
 
-        // create the trace variable for the bar plot
-        var labels = industries_top_10_S;
+//         // create the trace variable for the bar plot
+//         var labels = industries_top_10_S;
 
-        var industrytop10_S_trace = {
-            x: industries_top_10_SScores,
-            y: industries_top_10_S,
-            text: labels,
-            opacity: 0.8,
-            marker: {
-                color: 'rgb(0,76,150)',
-                line: {
-                    color: 'rgb(0,0,102)',
-                    width: 1.5
-                }
-            },
-            type: "bar",
-            orientation: "h",
-        };
+//         var industrytop10_S_trace = {
+//             x: industries_top_10_SScores,
+//             y: industries_top_10_S,
+//             text: labels,
+//             opacity: 0.8,
+//             marker: {
+//                 color: 'rgb(0,76,150)',
+//                 line: {
+//                     color: 'rgb(0,0,102)',
+//                     width: 1.5
+//                 }
+//             },
+//             type: "bar",
+//             orientation: "h",
+//         };
 
-        // create data variable for the industry scores
-        var dataS = [industrytop10_S_trace];
+//         // create data variable for the industry scores
+//         var dataS = [industrytop10_S_trace];
 
-        // create layout variable to set plots layout
-        var layout = {
-            title: "<b>Top 10 Industry AVG Social Risk Scores</b><br>(lower scores are better)",
-            yaxis: {
-                tickmode: "linear",
-                showgrid: true,
-                zeroline: true,
-                showline: true,
-                mirror: 'ticks',
-                gridcolor: '#bdbdbd',
-                gridwidth: 2,
-                zerolinecolor: '#969696',
-                zerolinewidth: 4,
-                linecolor: '#636363',
-                linewidth: 6
-            },
-            margin: {
-                l: 240,
-                r: 50,
-                t: 100,
-                b: 50
-            }
-            // automargin: true
-        };
-        // create the bar plot
-        Plotly.newPlot("top10_S_industries_bar", dataS, layout);
-    });
-};
+//         // create layout variable to set plots layout
+//         var layout = {
+//             title: "<b>Top 10 Industry AVG Social Risk Scores</b><br>(lower scores are better)",
+//             yaxis: {
+//                 tickmode: "linear",
+//                 showgrid: true,
+//                 zeroline: true,
+//                 showline: true,
+//                 mirror: 'ticks',
+//                 gridcolor: '#bdbdbd',
+//                 gridwidth: 2,
+//                 zerolinecolor: '#969696',
+//                 zerolinewidth: 4,
+//                 linecolor: '#636363',
+//                 linewidth: 6
+//             },
+//             margin: {
+//                 l: 240,
+//                 r: 50,
+//                 t: 100,
+//                 b: 50
+//             }
+//             // automargin: true
+//         };
+//         // create the bar plot
+//         Plotly.newPlot("top10_S_industries_bar", dataS, layout);
+//     });
+// };
 
-build_Social_industrytop10_plot();
+// build_Social_industrytop10_plot();
 
-// ----------------------------------------------------------------------------------
-// ----------------------------------------------------------------------------------
+// // ----------------------------------------------------------------------------------
+// // ----------------------------------------------------------------------------------
 
-function build_Governance_industrytop10_plot() {
+// function build_Governance_industrytop10_plot() {
 
-    // var url = "/api/esg";
+//     // var url = "/api/esg";
 
-    d3.json("../static/data/G_Industry10_Table.json").then((data) => {
-        // log the data in order to visualize it
-        console.log(data);
+//     d3.json("../static/data/G_Industry10_Table.json").then((data) => {
+//         // log the data in order to visualize it
+//         console.log(data);
 
-        // convert json to array of objects
-        var industries_top_10_G = Object.values(data.Industry).reverse();
-        console.log(industries_top_10_G);
+//         // convert json to array of objects
+//         var industries_top_10_G = Object.values(data.Industry).reverse();
+//         console.log(industries_top_10_G);
 
-        var industries_top_10_GScores = Object.values(data["Governance Risk Score"]).reverse();
-        console.log(industries_top_10_GScores);
+//         var industries_top_10_GScores = Object.values(data["Governance Risk Score"]).reverse();
+//         console.log(industries_top_10_GScores);
 
-        // create the trace variable for the bar plot
-        var labels = industries_top_10_G;
+//         // create the trace variable for the bar plot
+//         var labels = industries_top_10_G;
 
-        var industrytop10_G_trace = {
-            x: industries_top_10_GScores,
-            y: industries_top_10_G,
-            text: labels,
-            opacity: 0.8,
-            marker: {
-                color: 'rgb(0,76,150)',
-                line: {
-                    color: 'rgb(0,0,102)',
-                    width: 1.5
-                }
-            },
-            type: "bar",
-            orientation: "h",
-        };
+//         var industrytop10_G_trace = {
+//             x: industries_top_10_GScores,
+//             y: industries_top_10_G,
+//             text: labels,
+//             opacity: 0.8,
+//             marker: {
+//                 color: 'rgb(0,76,150)',
+//                 line: {
+//                     color: 'rgb(0,0,102)',
+//                     width: 1.5
+//                 }
+//             },
+//             type: "bar",
+//             orientation: "h",
+//         };
 
-        // create data variable for the industry scores
-        var dataG = [industrytop10_G_trace];
+//         // create data variable for the industry scores
+//         var dataG = [industrytop10_G_trace];
 
-        // create layout variable to set plots layout
-        var layout = {
-            title: "<b>Top 10 Industry AVG Governance Risk Scores</b><br>(lower scores are better)",
-            yaxis: {
-                tickmode: "linear",
-                showgrid: true,
-                zeroline: true,
-                showline: true,
-                mirror: 'ticks',
-                gridcolor: '#bdbdbd',
-                gridwidth: 2,
-                zerolinecolor: '#969696',
-                zerolinewidth: 4,
-                linecolor: '#636363',
-                linewidth: 6
-            },
-            margin: {
-                l: 210,
-                r: 50,
-                t: 100,
-                b: 50
-            }
-            // automargin: true
-        };
-        // create the bar plot
-        Plotly.newPlot("top10_G_industries_bar", dataG, layout);
-    });
-};
+//         // create layout variable to set plots layout
+//         var layout = {
+//             title: "<b>Top 10 Industry AVG Governance Risk Scores</b><br>(lower scores are better)",
+//             yaxis: {
+//                 tickmode: "linear",
+//                 showgrid: true,
+//                 zeroline: true,
+//                 showline: true,
+//                 mirror: 'ticks',
+//                 gridcolor: '#bdbdbd',
+//                 gridwidth: 2,
+//                 zerolinecolor: '#969696',
+//                 zerolinewidth: 4,
+//                 linecolor: '#636363',
+//                 linewidth: 6
+//             },
+//             margin: {
+//                 l: 210,
+//                 r: 50,
+//                 t: 100,
+//                 b: 50
+//             }
+//             // automargin: true
+//         };
+//         // create the bar plot
+//         Plotly.newPlot("top10_G_industries_bar", dataG, layout);
+//     });
+// };
 
-build_Governance_industrytop10_plot();
+// build_Governance_industrytop10_plot();
 
 // --------------------------------------------------------------------
 // --------------------------------------------------------------------
