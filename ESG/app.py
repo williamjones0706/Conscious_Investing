@@ -1,128 +1,148 @@
-# import os
+# Import all dependencies required to run the application 
 
-# # Heroku check
-# is_heroku = False
-# if 'IS_HEROKU' in os.environ:
-#     is_heroku = True
+# The OS import is used to connect to the heroku environment to get the environment variables for database connection
+import os
+import json
+# import io
 
-# Flask
-from flask import (
-    Flask,
-    render_template,
-    jsonify,
-    request,
-    redirect)
+# Pandas is required in order to read the sql queries into dataframes for conversion to JSON for plotting
+import pandas as pd
+import numpy as np
 
-# SQL Alchemy
-# import sqlalchemy
-# from sqlalchemy import create_engine
-# from sqlalchemy.ext.automap import automap_base
-# from sqlalchemy.orm import Session
+# SqlAlchemy is needed to make the connection to the database and actually pull information from it with the engine postgres URL
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
 
-# # PyMySQL
-# import pymysql
+# Psycorp2 is required in order to connect the the postgres database, whereas pymysql would be used for MySQL connections
+import psycopg2
 
-# Pandas
-# import pandas as pd
+# Flask is used to actually deploy our application and render the html files for the webpage views the user sees
+from flask import Flask, jsonify, render_template, url_for, json, request
+from flask_sqlalchemy import SQLAlchemy
+import pickle
+from sklearn.cluster import KMeans
 
-# JSON
-# import json
+#  In order to work on our project both locally and in the cloud the following code tells it to either use the config file or search heroku
+# for the environment variables 
+IS_HEROKU = False
 
-# Import your config file(s) and variable(s)
-# if is_heroku == False:
-#     from config import DATABASE_URL, remote_db_port, remote_esg_dbname, remote_esg_dbuser, remote_esg_dbpwd
-# else:
-# remote_db_endpoint = os.environ.get('DATABASE_URL')
-# remote_db_port = os.environ.get('remote_db_port')
-# remote_esg_dbname = os.environ.get('remote_esg_dbname')
-# remote_esg_dbuser = os.environ.get('remote_esg_dbuser')
-# remote_esg_dbpwd = os.environ.get('remote_esg_dbpwd')
-    
-# Configure MySQL connection and connect 
-# pymysql.install_as_MySQLdb()
-# engine = create_engine(f"mysql://{remote_esg_dbuser}:{remote_esg_dbpwd}@{remote_db_endpoint}:{remote_db_port}/{remote_esg_dbname}")
-# conn = engine.connect()
+if('IS_HEROKU' in os.environ):
+    IS_HEROKU = True
+
+if (IS_HEROKU):
+    remote_esg_host = os.environ['remote_esg_host']
+    remote_db_port = os.environ['remote_db_port']
+    remote_esg_dbname = os.environ['remote_esg_dbname']
+    remote_esg_dbuser = os.environ['remote_esg_dbuser']
+    remote_esg_dbpwd = os.environ['remote_esg_dbpwd']
+    API_KEY = os.environ['mapboxkey']
+else:
+    from config import remote_esg_host, remote_db_port, remote_esg_dbname, remote_esg_dbuser, remote_esg_dbpwd 
+
+engine = create_engine(f"postgres://{remote_esg_dbuser}:{remote_esg_dbpwd}@{remote_esg_host}:{remote_db_port}/{remote_esg_dbname}")
+conn = engine.connect()
 
 # Initialize Flask application
 app = Flask(__name__)
+model = pickle.load(open("model.pkl", 'rb'))
 
 # Set up SQL Alchemy connection and classes
-# Base = automap_base() # Declare a Base using `automap_base()`
-# Base.prepare(engine, reflect=True) # Use the Base class to reflect the database tables
-# Base.prepare(engine, reflect=True) # Use the Base class to reflect the database tables
-# Base.classes.keys() # Print all of the classes mapped to the Base
-# # ClientInfo = Base.classes.client_info # Assign the client_info class (table) to a variable called `ClientInfo`
-# session = Session(engine) # Create a session
+Base = automap_base() # Declare a Base using `automap_base()`
+Base.prepare(engine, reflect=True) # Use the Base class to reflect the database tables
+Base.classes.keys() # Print all of the classes mapped to the Base
+# ClientInfo = Base.classes.client_info # Assign the client_info class (table) to a variable called `ClientInfo`
+session = Session(engine) # Create a session
+print(Base.classes.keys())
 
-# Set up your default route
-@app.route('/')
-def home():
-    return render_template('index.html')  
+# Develop flask routes for each page and then the routes for the database info to feed the plots in our js files
 
-@app.route('/industry')
-def industry():
-    return render_template('industry.html')
+@app.route("/")
+def index():
+    """Return the homepage."""
+    return render_template("index.html")
 
-@app.route('/stockanalysis')
-def stock_analysis():
-    return render_template('stock_analysis.html')
+@app.route("/company_search")
+def company_search():
+    """Return the company search page."""
+    return render_template("company_search.html")
 
-# @app.route('/post', methods=['POST'])
-# def process_form_data():
+@app.route("/data_table")
+def data_table():
+    """Return the data table."""
+    return render_template("data_table.html")
 
-#     industry_partner = ''
-#     client_id = ''
-#     travel_no = ''
-#     dt = ''
-#     project_name = ''
-#     project_id = ''
-#     contract_task_order = ''
+@app.route("/table_iframe")
+def data_iframe():
+    """Return the table iframe."""
+    return render_template("table.html")
 
-#     if request.method == 'POST':
-#         try:
-#             industry_partner = request.form['industry_partner']
-#             client_id = request.form['client_id']
-#             travel_no = request.form['travel_no']
-#             dt = request.form['dt']
-#             project_name = request.form['project_name'] 
-#             project_id = request.form['project_id']
-#             contract_task_order = request.form['contract_task_order']           
-            
-#         except Exception as e:
-#             print(e)
+@app.route("/deep_dive")
+def deep_dive():
+    """Return the deep_dive info for industry/sector/funnel,etc."""
+    return render_template("deep_dive.html")
 
-#     # Assemble record
-#     record = ClientInfo(
-#             industry_partner = industry_partner,
-#             client_id = client_id,
-#             travel_no = travel_no,
-#             dt = dt,
-#             project_name = project_name,
-#             project_id = project_id,
-#             contract_task_order = contract_task_order
-#             )
+@app.route("/esg_breakdown")
+def esg_breakdown():
+    """Return the history and breakdown page."""
+    return render_template("esg_breakdown.html")
 
-#     # Add this record to the DB session
-#     session.add(record)
+@app.route("/recommendations")
+def recommendations():
+    """Return the recommendations page."""
+    return render_template("recommendations.html")
 
-#     # Commit the objects to the database
-#     session.commit()
 
-#     return render_template('success.html', industry_partner=industry_partner)
+@app.route('/output',methods=["POST"])
+def get_output():
+    json = request.get_json()
+    # input_data = pd.DataFrame(json["data"])
+    input_data = [[json["data"]['E'],json["data"]['S'],json["data"]['G']]]
+    # input_data = json["data"]['S']
+    # input_data.append(json["data"]['E'])
+    # input_data.append(json["data"]['S'])
+    # input_data.append(json["data"]['G'])
+    # model_input = np.array(input_data)
+    # print(model_input)
+    # with open("model.pkl", 'rb') as file:
+    # model = pickle.load(open("model.pkl", 'rb'))
+    model_predict = model.predict(input_data)
+    model_predict_tuple = tuple(model_predict)
+    # mdl_array = [model_output]
+    # model_array = np.array([model_predict])   
+    # print(model_predict) 
+    # print(model_predict_tuple)
+    # print(3)
+    # print(model_array)
+    model_predict_array = np.array([model_predict_tuple])
+    # numpyData = {"array": model_predict_array}
+    # print(numpyData)
+    model_predict_df = pd.DataFrame(model_predict_array,index=['Result'], columns=['Output'])
+    model_predict_JSON = model_predict_df.to_json(orient='index')
+    print(model_predict_JSON)
+    return jsonify(model_predict_JSON)
 
-# @app.route('/report')
-# def generate_report():
+@app.route("/mapboxkey", methods=["GET", "POST"])
+def mapbox():
+    """Return the recommendations page."""
+    if request.method == "POST":
+        return 200
 
-#     # Reestablish DB connection
+    else:
+        return json.dumps(API_KEY)
+
+
+
+# @app.route('/api/data/esg')
+# def get_esg_data():
 #     conn = engine.connect()
-    
-#     try:
-#         data = conn.execute("SELECT * FROM vw_client_info")
-#         return render_template('report.html', data=data)
 
-#     except Exception as e:
-#         print(e)
-#         return render_template('error.html', error=True)
+#     esg_df = pd.read_sql("SELECT * FROM woke_investing", conn)
+
+#     conn.close()
+
+#     return esg_df.to_json(orient='records')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
